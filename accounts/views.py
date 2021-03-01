@@ -6,6 +6,6 @@ from .serializers import ProfileSerializer
 
 
 # Create your views here.
-class ProfileSerializer(generics.ListCreateAPIView):
+class ProfileListView(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
