@@ -3,7 +3,7 @@ import {Component} from 'react';
 class Login extends Component {
     render() {
         return <>
-            <form action="" onSubmit={(e) => this.props.handleLogin(e)}>
+            <form action="" onSubmit={(e) => this.props.handleLogin(e, this.props)}>
                 <h2>Login</h2>
                 <label htmlFor="username">Username</label>
                 <input type="text"

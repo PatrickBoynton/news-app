@@ -33,6 +33,7 @@ class App extends Component {
     }
 
     async handleLogin(e, object) {
+        e.preventDefault();
         const options = {
             method: "POST",
             headers: {
@@ -47,11 +48,11 @@ class App extends Component {
         }
         const response = await fetch("/rest-auth/login", options);
         const data = await response.json().catch(error => console.log(error));
-        if (data.key) {
-            Cookies.set("Authorization", `Token ${data.key}`)
-        }
-        this.setState({isLoggedIn: !!Cookies.get("Authorization")})
-        e.preventDefault();
+        console.log(data);
+        // if (data.key) {
+        //     Cookies.set("Authorization", `Token ${data.key}`)
+        // }z
+        this.setState({isLoggedIn: true})
     }
 
     async handleRegister(e, object) {
@@ -115,12 +116,16 @@ class App extends Component {
     }
 
 
-
     render() {
         return (
             <div className="App">
                 {
-                    this.state.loginOrRegister
+                    this.state.isLoggedIn
+                        ?
+                        <Profile handleImage={this.handleImage}
+                                 handleSubmit={this.handleSubmit}/>
+                        :
+                        this.state.loginOrRegister
                         ?
                         <Login handleInput={this.handleInput}
                                handleLogin={this.handleLogin}
@@ -131,8 +136,7 @@ class App extends Component {
                                   handleRegister={this.handleRegister}
                                   handleLoginOrRegister={this.handleLoginOrRegister}/>
                 }
-                <Profile handleImage={this.handleImage}
-                         handleSubmit={this.handleSubmit}/>
+
             </div>
         );
     }
