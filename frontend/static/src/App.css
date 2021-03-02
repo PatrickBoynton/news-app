@@ -13,7 +13,7 @@ button{
   width: auto;
 }
 button.link{
-  color: blue;
+  color: #CD0505;
   background:none;
   margin: 0;
   padding: 0;
@@ -21,3 +21,19 @@ button.link{
   cursor: pointer;
   text-decoration: underline;
 }
+.form-btn{
+  background: none #cd0505;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50px;
+  box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.4);
+}
+input{
+  background-color: #242424;
+  color: white;
+}
+/*.file{*/
+/*  background-color: #cd0505;*/
+/*  border: none;*/
+/*}*/
