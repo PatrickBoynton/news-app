@@ -2,6 +2,8 @@ import './App.css';
 import {Component} from "react";
 import Login from './components/Login';
 import Register from './components/Register';
+import Profile from './components/Profile';
+
 import Cookies from 'js-cookie'
 
 class App extends Component {
@@ -15,10 +17,13 @@ class App extends Component {
             password: "",
             password1: "",
             password2: "",
+            preview_picture: null,
+            preview: ""
         }
         this.handleLoginOrRegister = this.handleLoginOrRegister.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.handleImage = this.handleImage.bind(this);
     }
 
     handleLoginOrRegister() {
@@ -28,7 +33,6 @@ class App extends Component {
     }
 
     async handleLogin(e, object) {
-        alert("Clicked!")
         const options = {
             method: "POST",
             headers: {
@@ -77,6 +81,41 @@ class App extends Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
+    handleImage(e) {
+        let file = e.target.files[0];
+        this.setState({
+            profile_picture: file,
+        })
+
+        let reader = new FileReader();
+        reader.onloadend = () => {
+            this.setState({preview: reader.result})
+        }
+        reader.readAsDataURL(file);
+        e.preventDefault();
+    }
+
+    handleSubmit = async (e, object) => {
+        e.preventDefault();
+        let formData = new FormData();
+
+        formData.append('profile_picture', this.state.profile_picture);
+        formData.append('user', object.id);
+        const options = {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": Cookies.get("csrftoken")
+            },
+            body: formData
+        }
+
+        const response = await fetch("/profiles/", options);
+
+        console.log(response);
+    }
+
+
+
     render() {
         return (
             <div className="App">
@@ -92,6 +131,8 @@ class App extends Component {
                                   handleRegister={this.handleRegister}
                                   handleLoginOrRegister={this.handleLoginOrRegister}/>
                 }
+                <Profile handleImage={this.handleImage}
+                         handleSubmit={this.handleSubmit}/>
             </div>
         );
     }
