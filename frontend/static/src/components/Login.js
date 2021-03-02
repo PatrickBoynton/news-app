@@ -1,14 +1,14 @@
 import {Component} from 'react';
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            email: "",
-            password: ""
-        }
+            username: '',
+            email: '',
+            password: ''
+        };
         this.handleLogin = this.handleLogin.bind(this);
         this.handleInput = this.handleInput.bind(this);
     }
@@ -16,30 +16,30 @@ class Login extends Component {
     async handleLogin(e, object) {
         e.preventDefault();
         const options = {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "Application/Json",
-                "X-CSRFToken": Cookies.get("csrftoken")
+                'Content-Type': 'Application/Json',
+                'X-CSRFToken': Cookies.get('csrftoken')
             },
             body: JSON.stringify({
                 username: object.username,
                 email: object.email,
                 password: object.password
             }),
-        }
-        const response = await fetch("/rest-auth/login/", options);
+        };
+        const response = await fetch('/rest-auth/login/', options);
         const data = await response.json().catch(error => console.log(error));
 
         if (data.key) {
-            Cookies.set("Authorization", `Token ${data.key}`)
-            this.props.handleLoggedIn()
+            Cookies.set('Authorization', `Token ${data.key}`);
+            this.props.handleLoggedIn();
         } else {
-            console.log(data)
+            console.log(data);
         }
     }
 
     handleInput(event) {
-        this.setState({[event.target.name]: event.target.value})
+        this.setState({[event.target.name]: event.target.value});
     }
 
     render() {
@@ -70,9 +70,9 @@ class Login extends Component {
                                                       onClick={() => this.props.handleLoginOrRegister()}>Register</button> an
                 account first.
             </p>
-        </>
+        </>;
     }
 }
 
-export default Login
+export default Login;
 
