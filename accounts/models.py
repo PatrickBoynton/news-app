@@ -14,5 +14,8 @@ class Profile(models.Model):
                                 on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profiles', null=True)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
     def __str__(self):
         return self.user.username
