@@ -32,7 +32,7 @@ class Login extends Component {
 
         if (data.key) {
             Cookies.set("Authorization", `Token ${data.key}`)
-            this.setState({isLoggedIn: true});
+            this.props.handleLoggedIn()
         } else {
             console.log(data)
         }

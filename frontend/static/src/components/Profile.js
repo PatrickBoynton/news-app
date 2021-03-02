@@ -8,15 +8,8 @@ class Profile extends Component {
     }
 
     handleLogout() {
-        const options = {
-            headers: {
-                'Content-Type': 'Application/Json',
-                'X-CSRFToken': Cookies.get('csrftoken')
-            },
-        };
-
-        Cookies.remove("Authorization")
-        this.setState({isLoggedIn: false})
+        Cookies.remove('Authorization');
+        this.props.handleIsLoggedIn();
     }
 
     render() {
