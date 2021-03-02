@@ -2,15 +2,23 @@ import './App.css';
 import {Component} from "react";
 import Login from './components/Login';
 import Register from './components/Register';
+import Cookies from 'js-cookie'
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loginOrRegister: true
+            loginOrRegister: true,
+            isLoggedIn: !!Cookies.get("Authorization"),
+            username: "",
+            email: "",
+            password: "",
+            password1: "",
+            password2: "",
         }
         this.handleLoginOrRegister = this.handleLoginOrRegister.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
 
     handleLoginOrRegister() {
@@ -19,11 +27,54 @@ class App extends Component {
         }))
     }
 
-    handleLogin(e) {
-        console.log(e);
+    async handleLogin(e, object) {
+        alert("Clicked!")
+        const options = {
+            method: "POST",
+            headers: {
+                "ContentType": "Application/Json",
+                "X-CSRFToken": Cookies.get("csrftoken")
+            },
+            body: JSON.stringify({
+                username: object.username,
+                email: object.email,
+                password: object.password
+            }),
+        }
+        const response = await fetch("/rest-auth/login", options);
+        const data = await response.json().catch(error => console.log(error));
+        if (data.key) {
+            Cookies.set("Authorization", `Token ${data.key}`)
+        }
+        this.setState({isLoggedIn: !!Cookies.get("Authorization")})
+        e.preventDefault();
     }
-    handleRegister(e) {
-        console.log(e);
+
+    async handleRegister(e, object) {
+        e.preventDefault();
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "Application/Json",
+                "X-CSRFToken": Cookies.get("csrftoken")
+            },
+            body: {
+                body: JSON.stringify(object)
+            }
+        }
+
+        const response = await fetch("/rest-auth/registration/", options);
+        const data = await response.json().catch(error => console.log(error));
+        console.log(data);
+        if (data.key) {
+            Cookies.set("Authorization", `Token ${data.key}`)
+        } else {
+            console.log(data);
+        }
+    }
+
+    handleInput(event) {
+        this.setState({[event.target.name]: event.target.value})
     }
 
     render() {
@@ -32,10 +83,14 @@ class App extends Component {
                 {
                     this.state.loginOrRegister
                         ?
-                        <Login handleLogin={this.handleLogin}
+                        <Login handleInput={this.handleInput}
+                               handleLogin={this.handleLogin}
                                handleLoginOrRegister={this.handleLoginOrRegister}/>
                         :
-                        <Register handleLoginOrRegister={this.handleLoginOrRegister}/>
+                        <Register user={this.state.user}
+                                  handleInput={this.handleInput}
+                                  handleRegister={this.handleRegister}
+                                  handleLoginOrRegister={this.handleLoginOrRegister}/>
                 }
             </div>
         );
