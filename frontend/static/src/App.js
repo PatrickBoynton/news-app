@@ -17,7 +17,6 @@ class App extends Component {
         }
         this.handleLoginOrRegister = this.handleLoginOrRegister.bind(this);
         this.handleIsLoggedIn = this.handleIsLoggedIn.bind(this);
-        this.handleImage = this.handleImage.bind(this);
     }
 
     handleLoginOrRegister() {
@@ -28,43 +27,9 @@ class App extends Component {
 
     handleIsLoggedIn() {
         this.setState((previousState) => ({
-            isloggedIn: !previousState.isloggedIn
+            isLoggedIn: !previousState.isloggedIn
         }))
     }
-
-    handleImage(e) {
-        let file = e.target.files[0];
-        this.setState({
-            profile_picture: file,
-        })
-
-        let reader = new FileReader();
-        reader.onloadend = () => {
-            this.setState({preview: reader.result})
-        }
-        reader.readAsDataURL(file);
-        e.preventDefault();
-    }
-
-    handleSubmit = async (e, object) => {
-        e.preventDefault();
-        let formData = new FormData();
-
-        formData.append('profile_picture', this.state.profile_picture);
-        formData.append('user', object.username);
-        const options = {
-            method: "POST",
-            headers: {
-                "X-CSRFToken": Cookies.get("csrftoken")
-            },
-            body: formData
-        }
-
-        const response = await fetch("/profiles/", options);
-
-        console.log(response);
-    }
-
 
     render() {
         return (
@@ -72,9 +37,7 @@ class App extends Component {
                 {
                     this.state.isLoggedIn
                         ?
-                        <Profile handleIsLoggedIn={this.handleIsLoggedIn}
-                                handleImage={this.handleImage}
-                                 handleSubmit={this.handleSubmit}/>
+                        <Profile handleIsLoggedIn={this.handleIsLoggedIn}/>
                         :
                         this.state.loginOrRegister
                             ?
