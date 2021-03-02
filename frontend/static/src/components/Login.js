@@ -25,7 +25,7 @@ class Login extends Component {
                        id="password"/>
                 <button type="submit">Login</button>
             </form>
-            <p>Don't have an account? Why not <a onClick={() => this.props.handleLoginOrRegister()} href="#">Register</a> an account first.</p>
+            <p>Don't have an account? Why not <button class="link" onClick={() => this.props.handleLoginOrRegister()}>Register</button> an account first.</p>
         </>
     }
 }
