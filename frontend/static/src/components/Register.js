@@ -1,44 +1,43 @@
-import { Component } from 'react';
+import {Component} from 'react';
 import Cookies from 'js-cookie';
 
-class Register extends Component{
+class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            email: "",
-            password1: "",
-            password2: ""
-        }
+            username: '',
+            email: '',
+            password1: '',
+            password2: ''
+        };
 
         this.handleRegister = this.handleRegister.bind(this);
         this.handleInput = this.handleInput.bind(this);
     }
+
     async handleRegister(e, object) {
         e.preventDefault();
-        console.log(object);
         const options = {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "Application/Json",
-                "X-CSRFToken": Cookies.get("csrftoken")
+                'Content-Type': 'Application/Json',
+                'X-CSRFToken': Cookies.get('csrftoken')
             },
-            body: {
-                body: JSON.stringify(object)
-            }
-        }
+            body: JSON.stringify(object)
+        };
 
-        const response = await fetch("/rest-auth/registration/", options);
+        const response = await fetch('/rest-auth/registration/', options);
         const data = await response.json().catch(error => console.log(error));
-        console.log(data);
+        console.log(object);
         if (data.key) {
-            Cookies.set("Authorization", `Token ${data.key}`)
+            Cookies.set('Authorization', `Token ${data.key}`);
         }
     }
 
     handleInput(event) {
-        this.setState({[event.target.name]: event.target.value})
+        this.setState({[event.target.name]: event.target.value});
     }
+
     render() {
         return <>
             <form onSubmit={(e) => this.handleRegister(e, this.state)}>
@@ -68,10 +67,12 @@ class Register extends Component{
                        name="password2"
                        id="password2"/>
                 <button className="form-btn" type="submit">Register</button>
-                <p>Already have an account? Please <button className="link" onClick={() => this.props.handleLoginOrRegister()} href="#">Login</button> </p>
+                <p>Already have an account? Please <button className="link"
+                                                           onClick={() => this.props.handleLoginOrRegister()}
+                                                           href="#">Login</button></p>
             </form>
-        </>
+        </>;
     }
 }
 
-export default Register
+export default Register;
