@@ -3,7 +3,7 @@ import {Component} from 'react';
 class Login extends Component {
     render() {
         return <>
-            <form action="">
+            <form action="" onSubmit={(e) => this.props.handleLogin(e)}>
                 <h2>Login</h2>
                 <label htmlFor="username">Username</label>
                 <input type="text" name="username" id="username"/>
@@ -13,7 +13,7 @@ class Login extends Component {
                 <input type="password" name="password" id="password"/>
                 <button type="submit">Login</button>
             </form>
-            <p>Don't have an account? Why not <a href="#">Register</a> an account first.</p>
+            <p>Don't have an account? Why not <a onClick={() => this.props.handleLoginOrRegister()} href="#">Register</a> an account first.</p>
         </>
     }
 }
