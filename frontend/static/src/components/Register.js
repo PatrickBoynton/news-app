@@ -30,7 +30,7 @@ class Register extends Component{
                        name="password2"
                        id="password2"/>
                 <button type="submit">Register</button>
-                <p>Already have an account? Please <a onClick={() => this.props.handleLoginOrRegister()} href="#">Login</a> </p>
+                <p>Already have an account? Please <button class="link" onClick={() => this.props.handleLoginOrRegister()} href="#">Login</button> </p>
             </form>
         </>
     }
