@@ -65,11 +65,11 @@ class Login extends Component {
                        name="password"
                        id="password"/>
                 <button className="form-btn" type="submit">Login</button>
-            </form>
-            <p>Don't have an account? Why not <button className="link"
+                <p>Don't have an account? Why not <button className="link"
                                                       onClick={() => this.props.handleLoginOrRegister()}>Register</button> an
                 account first.
             </p>
+            </form>
         </>;
     }
 }
