@@ -19,3 +19,9 @@ class ArticleCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         user = self.request.user
         return models.Article.objects.filter(author=user)
+
+
+class ArticleEditView(generics.RetrieveUpdateAPIView):
+    queryset = models.Article.objects.all()
+    serializer_class = ArticleSerializer
+    permission_classes = (permissions.IsAuthenticated, )
