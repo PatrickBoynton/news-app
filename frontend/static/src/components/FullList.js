@@ -1,16 +1,32 @@
 import {Component} from 'react';
 
 class FullList extends Component {
-    componentDidMount() {
-        fetch('/api/v1/articles')
-            .then(response => response.json())
-            .then(data => console.log(data));
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            articles: []
+        };
+    }
+
+    async componentDidMount() {
+        const response = await fetch('/api/v1/articles/');
+        const data = await response.json();
+        this.setState({articles: data});
+    }
+
+    async getArticles() {
+        const response = await fetch('/api/v1/articles/');
+        const data = await response.json();
+        this.setState({articles: data});
     }
 
     render() {
-       const articles = fetch("/api/vi/articles")
-           .then(response => response.json())
-           .then(data => data.map(article => (<li>{article.title}</li>)))
+        const articles = this.state.articles.map(article => <li>
+            <h2>{article.title}</h2>
+            <p>{article.body}</p>
+            <p>{article.author}</p>
+        </li>);
         return (
             <ul>
                 {articles}
