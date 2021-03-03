@@ -22,7 +22,7 @@ class FullList extends Component {
     }
 
     render() {
-        const articles = this.state.articles.map(article => <li>
+        const articles = this.state.articles.map(article => <li key={article.id}>
             <h2>{article.title}</h2>
             <p>{article.body}</p>
             <p>{article.author}</p>
