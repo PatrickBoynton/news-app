@@ -8,7 +8,9 @@ class Profile extends Component {
             profile_picture: null,
             preview: '',
             articles: [],
-            user: ''
+            user: '',
+            title: '',
+            body: ''
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleImage = this.handleImage.bind(this);
