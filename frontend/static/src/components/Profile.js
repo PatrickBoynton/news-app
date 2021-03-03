@@ -17,6 +17,7 @@ class Profile extends Component {
         this.handleImage = this.handleImage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.handleEditOrPost = this.handleEditOrPost(this);
     }
 
     async componentDidMount() {
@@ -93,9 +94,15 @@ class Profile extends Component {
         // const response = await fetch(`/api/v1/articles/edit/${article.id}/`, options);
         // const data = await response.json();
         this.setState({title: article.title, body: article.body});
-        this.setState((previousState) => ({isEditMode: !previousState.isEditMode}));
+        // this.setState((previousState) => ({isEditMode: !previousState.isEditMode}));
+    }
+    handleEditOrPost() {
+        
     }
 
+    handleInput(event) {
+        this.setState({[event.target.name]: [event.target.value]})
+    }
 
     render() {
         const articles = this.state.articles.map(article => <section key={article.id}>
@@ -119,6 +126,7 @@ class Profile extends Component {
                 <label htmlFor="body">Body</label>
                 <textarea
                     value={this.state.body}
+                    onChange={this.handleInput}
                     type="text"
                     name="body"
                     id="body"/>
