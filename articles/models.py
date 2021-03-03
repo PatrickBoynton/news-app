@@ -8,3 +8,6 @@ class Article(models.Model):
     body = models.TextField(max_length=255)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
