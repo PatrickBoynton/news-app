@@ -42,12 +42,17 @@ class App extends Component {
                         :
                         this.state.loginOrRegister
                             ?
-                            <Login handleLoggedIn={this.handleIsLoggedIn}
-                                   handleLoginOrRegister={this.handleLoginOrRegister}/>
+                            <>
+                            <div className="split">
+                                <Login handleLoggedIn={this.handleIsLoggedIn}
+                                       handleLoginOrRegister={this.handleLoginOrRegister}/>
+                                <FullList/>
+                            </div>
+                            </>
                             :
                             <div className="split">
-                                <Register handleLoginOrRegister={this.handleLoginOrRegister}/>
-                                <FullList/>
+                            <Register handleLoginOrRegister={this.handleLoginOrRegister}/>
+                            <FullList/>
                             </div>
                 }
 
