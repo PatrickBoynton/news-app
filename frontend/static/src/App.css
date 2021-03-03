@@ -31,5 +31,11 @@ button.link{
 }
 input {
   background-color: #242424;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
   color: white;
+}
+.split{
+  display: flex;
+  flex-direction: row-reverse;
 }
