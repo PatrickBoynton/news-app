@@ -4,6 +4,10 @@ import Cookies from 'js-cookie';
 class Profile extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            profile_picture: null,
+            preview: ''
+        };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleImage = this.handleImage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,17 +31,17 @@ class Profile extends Component {
         e.preventDefault();
         let formData = new FormData();
 
-        formData.append('profile_picture', this.profile.profile_picture);
-        formData.append('user', Cookies.get('csrftoken'));
+        formData.append('profile_picture', this.state.profile_picture);
+        formData.append('user', Cookies.get('csrftoken'))
         const options = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'X-CSRFToken': Cookies.get('csrftoken')
             },
             body: formData
         };
 
-        const response = await fetch('/profiles/', options);
+        const response = await fetch('/api/v1/profiles/detail/', options);
 
         console.log(response);
     };
@@ -53,7 +57,7 @@ class Profile extends Component {
             <form action="" onSubmit={this.handleSubmit}>
                 <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>
                 {
-                    this.props.profile_picture && <img src={this.props.preview} alt="preview"/>
+                    this.state.profile_picture && <img src={this.state.preview} alt="preview"/>
                 }
                 <button className="form-btn" type="submit">Save</button>
             </form>
