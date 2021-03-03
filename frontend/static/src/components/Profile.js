@@ -6,11 +6,22 @@ class Profile extends Component {
         super(props);
         this.state = {
             profile_picture: null,
-            preview: ''
+            preview: '',
+            articles: [],
+            user: ''
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleImage = this.handleImage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    async componentDidMount() {
+        const articles = await fetch('/api/v1/articles/create/');
+        const data = await articles.json();
+        this.setState({articles: data});
+        const users = await fetch('/rest-auth/user');
+        const userData = await users.json();
+        console.log(userData);
     }
 
     handleImage(e) {
@@ -27,12 +38,12 @@ class Profile extends Component {
         e.preventDefault();
     }
 
-    handleSubmit = async (e, object) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
         let formData = new FormData();
 
         formData.append('profile_picture', this.state.profile_picture);
-        formData.append('user', Cookies.get('csrftoken'))
+        formData.append('user', Cookies.get('csrftoken'));
         const options = {
             method: 'PUT',
             headers: {
@@ -51,9 +62,40 @@ class Profile extends Component {
         this.props.handleIsLoggedIn();
     }
 
+    async handleDelete(id) {
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'Application/Json',
+                'X-CSRFToken': Cookies.get('csrftoken')
+            }
+        };
+        const response = await fetch(`/api/v1/articles/delete/${id}`, options);
+        const data = await response.json();
+        console.log(data);
+
+    }
+
 
     render() {
+        const articles = this.state.articles.map(article => <section key={article.id}>
+            <h2>{article.title}</h2>
+            <p>{article.body}</p>
+            <p>{article.audio}</p>
+            <button>Edit</button>
+            <button onClick={() => this.handleDelete(article.id)}>Delete</button>
+        </section>);
         return <>
+            <h1>jpb3</h1>
+            <img alt="jpb3"/>
+            {articles}
+            <form action="">
+                <label htmlFor="title">Title</label>
+                <input type="text" name="title" id="title"/>
+                <label htmlFor="body">Body</label>
+                <textarea type="text" name="body" id="body"/>
+                <button className="form-btn">Submit Article</button>
+            </form>
             <form action="" onSubmit={this.handleSubmit}>
                 <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>
                 {
