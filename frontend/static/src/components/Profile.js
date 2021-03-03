@@ -6,6 +6,7 @@ class Profile extends Component {
         super(props);
         this.state = {
             profile_picture: null,
+            isEditMode: false,
             preview: '',
             articles: [],
             user: '',
@@ -15,15 +16,13 @@ class Profile extends Component {
         this.handleLogout = this.handleLogout.bind(this);
         this.handleImage = this.handleImage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
 
     async componentDidMount() {
         const articles = await fetch('/api/v1/articles/create/');
         const data = await articles.json();
         this.setState({articles: data});
-        const users = await fetch('/rest-auth/user');
-        const userData = await users.json();
-        console.log(userData);
     }
 
     handleImage(e) {
@@ -78,13 +77,32 @@ class Profile extends Component {
 
     }
 
+    async handleEdit(article) {
+        // const options = {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'Application/Json',
+        //         'X-CSRFToken': Cookies.get('csrftoken')
+        //     },
+        //     body: JSON.stringify({
+        //         author: this.state.articles[0].author,
+        //         title: this.state.title,
+        //         body: this.state.body,
+        //     })
+        // };
+        // const response = await fetch(`/api/v1/articles/edit/${article.id}/`, options);
+        // const data = await response.json();
+        this.setState({title: article.title, body: article.body});
+        this.setState((previousState) => ({isEditMode: !previousState.isEditMode}));
+    }
+
 
     render() {
         const articles = this.state.articles.map(article => <section key={article.id}>
             <h2>{article.title}</h2>
             <p>{article.body}</p>
-            <p>{article.audio}</p>
-            <button>Edit</button>
+            <p>{article.author}</p>
+            <button onClick={() => this.handleEdit(article)}>Edit</button>
             <button onClick={() => this.handleDelete(article.id)}>Delete</button>
         </section>);
         return <>
@@ -93,17 +111,30 @@ class Profile extends Component {
             {articles}
             <form action="">
                 <label htmlFor="title">Title</label>
-                <input type="text" name="title" id="title"/>
+                <input type="text"
+                       value={this.state.title}
+                       onChange={this.handleInput}
+                       name="title"
+                       id="title"/>
                 <label htmlFor="body">Body</label>
-                <textarea type="text" name="body" id="body"/>
-                <button className="form-btn">Submit Article</button>
+                <textarea
+                    value={this.state.body}
+                    type="text"
+                    name="body"
+                    id="body"/>
+                {
+                    !this.state.isEditMode
+                 ?
+                 <button className="form-btn" type="submit">Submit an Article</button>
+                 :
+                <button className="form-btn" type="submit">Edit your article</button>
+                }
             </form>
             <form action="" onSubmit={this.handleSubmit}>
                 <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>
                 {
                     this.state.profile_picture && <img src={this.state.preview} alt="preview"/>
                 }
-                <button className="form-btn" type="submit">Save</button>
             </form>
             <button onClick={() => this.handleLogout()} className="form-btn">Logout</button>
         </>;
