@@ -29,7 +29,7 @@ button.link{
   border-radius: 50px;
   box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.4);
 }
-input {
+input, textarea {
   background-color: #242424;
   border-bottom: 2px solid #fff;
   border-right: 2px solid #fff;
