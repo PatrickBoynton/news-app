@@ -1,9 +1,6 @@
 import './App.css';
 import {Component} from 'react';
-import Login from './components/Login';
-import Register from './components/Register';
-import Profile from './components/Profile';
-import FullList from './components/FullList';
+import Header from './components/Header';
 
 import Cookies from 'js-cookie';
 
@@ -35,27 +32,26 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                {
-                    this.state.isLoggedIn
-                        ?
-                        <Profile handleIsLoggedIn={this.handleIsLoggedIn}/>
-                        :
-                        this.state.loginOrRegister
-                            ?
-                            <>
-                            <div className="split">
-                                <Login handleLoggedIn={this.handleIsLoggedIn}
-                                       handleLoginOrRegister={this.handleLoginOrRegister}/>
-                                <FullList/>
-                            </div>
-                            </>
-                            :
-                            <div className="split">
-                            <Register handleLoginOrRegister={this.handleLoginOrRegister}/>
-                            <FullList/>
-                            </div>
-                }
-
+                {/*{*/}
+                {/*    // this.state.isLoggedIn*/}
+                {/*    //     ?*/}
+                {/*    //     <Profile handleIsLoggedIn={this.handleIsLoggedIn}/>*/}
+                {/*    //     :*/}
+                {/*    //     this.state.loginOrRegister*/}
+                {/*    //         ?*/}
+                {/*    //         <>*/}
+                {/*    //         <div className="split">*/}
+                {/*    //             <Login handleLoggedIn={this.handleIsLoggedIn}*/}
+                {/*    //                    handleLoginOrRegister={this.handleLoginOrRegister}/>*/}
+                {/*    //             <FullList/>*/}
+                {/*    //         </div>*/}
+                {/*    //         </>*/}
+                {/*    //         :*/}
+                {/*    //         <div className="split">*/}
+                {/*    //         <Register handleLoginOrRegister={this.handleLoginOrRegister}/>*/}
+                {/*    //         <FullList/>*/}
+                {/*// }*/}
+                <Header isLoggedIn={this.state.isLoggedIn}/>
             </div>
         );
     }
