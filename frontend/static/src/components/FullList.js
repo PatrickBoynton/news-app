@@ -12,25 +12,29 @@ class FullList extends Component {
     async componentDidMount() {
         const response = await fetch('/api/v1/articles/');
         const data = await response.json();
+        console.log(data);
         this.setState({articles: data});
     }
 
-    async getArticles() {
-        const response = await fetch('/api/v1/articles/');
-        const data = await response.json();
-        this.setState({articles: data});
-    }
 
     render() {
-        const articles = this.state.articles.map(article => <li key={article.id}>
-            <h2>{article.title}</h2>
-            <p>{article.body}</p>
-            <p>{article.author}</p>
-        </li>);
+        const articles = this.state.articles.map(article => <section key={article.id}>
+            {
+                article.article_status === 'published'
+                    ?
+                    <>
+                        <h2>{article.title}</h2>
+                        <p>{article.body}</p>
+                        <p>{article.author}</p>
+                    </>
+                    :
+                    null
+            }
+        </section>);
         return (
-            <ul>
+            <div>
                 {articles}
-            </ul>
+            </div>
         );
     }
 }
