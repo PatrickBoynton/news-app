@@ -39,3 +39,8 @@ input, textarea {
   display: flex;
   flex-direction: row-reverse;
 }
+a:-webkit-any-link{
+  color: #cd0505;
+  text-decoration: none;
+  padding: 0 30px;
+}
