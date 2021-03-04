@@ -1,28 +1,20 @@
 import {Component} from 'react';
-import {Switch} from 'react-router-dom';
-import FullList from './FullList';
 import {Link} from 'react-router-dom';
-import Login from './Login';
-import Profile from './Profile';
 
 class Header extends Component {
     render() {
         return <header>
             <nav>
-                <Switch>
-                    <Link to="/profile" render={
-                        (props) => <Profile {...props} isLoggedIn={this.props.isLoggedIn}/>
-                    }/>
-                    <Link to="/" component={FullList}/>
-                </Switch>
+                <Link to="/news">News</Link>
+                <Link to="/astronomy">Astronomy</Link>
+                <Link to="/cosmology">Cosmology</Link>
+                <Link to="/exoplanets">Exoplanets</Link>
+                <Link to="/editorial">Editorial</Link>
+                <Link to="/profile">Profile</Link>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+                <Link to="/"/>
             </nav>
-            {
-                this.props.isLoggedIn
-                    ?
-                    <Login isLoggedIn={this.props.isLoggedIn}/>
-                    :
-                    null
-            }
         </header>;
     }
 }
