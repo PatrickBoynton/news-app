@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Register from './components/Register';
 import Login from './components/Login';
 import Profile from './components/Profile';
+import Astronomy from './components/Astronomy';
 import Cookies from 'js-cookie';
 import {Switch, Route} from 'react-router-dom';
 import FullList from './components/FullList';
@@ -32,17 +33,18 @@ class App extends Component {
                 <Header isLoggedIn={this.state.isLoggedIn}/>
                 <Switch>
                     {
-                        this.state.isLoggedIn
-                            ?
+                        // this.state.isLoggedIn
+                            // ?
                             <>
                                 <Route path="/profile" component={Profile}/>
                                 <Route path="/register" component={Register}/>
                                 <Route path="/login" component={Login}/>
-                                <Route path="/" component={FullList}/>
+                                <Route path="/astronomy" component={Astronomy}/>
+                                <Route exact path="/" component={FullList}/>
                             </>
 
-                            :
-                            <Route exact="/" component={FullList}/>
+                            // :
+                            // <Route exact="/" component={FullList}/>
                     }
                 </Switch>
             </div>
