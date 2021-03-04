@@ -1,8 +1,12 @@
 import './App.css';
 import {Component} from 'react';
 import Header from './components/Header';
-
+import Register from './components/Register';
+import Login from './components/Login';
+import Profile from './components/Profile';
 import Cookies from 'js-cookie';
+import {Switch, Route} from 'react-router-dom';
+import FullList from './components/FullList';
 
 class App extends Component {
     constructor(props) {
@@ -14,7 +18,6 @@ class App extends Component {
             preview: ''
         };
         this.handleLoginOrRegister = this.handleLoginOrRegister.bind(this);
-        this.handleIsLoggedIn = this.handleIsLoggedIn.bind(this);
     }
 
     handleLoginOrRegister() {
@@ -23,35 +26,25 @@ class App extends Component {
         }));
     }
 
-    handleIsLoggedIn() {
-        this.setState((previousState) => ({
-            isLoggedIn: !previousState.isloggedIn
-        }));
-    }
-
     render() {
         return (
             <div className="App">
-                {/*{*/}
-                {/*    // this.state.isLoggedIn*/}
-                {/*    //     ?*/}
-                {/*    //     <Profile handleIsLoggedIn={this.handleIsLoggedIn}/>*/}
-                {/*    //     :*/}
-                {/*    //     this.state.loginOrRegister*/}
-                {/*    //         ?*/}
-                {/*    //         <>*/}
-                {/*    //         <div className="split">*/}
-                {/*    //             <Login handleLoggedIn={this.handleIsLoggedIn}*/}
-                {/*    //                    handleLoginOrRegister={this.handleLoginOrRegister}/>*/}
-                {/*    //             <FullList/>*/}
-                {/*    //         </div>*/}
-                {/*    //         </>*/}
-                {/*    //         :*/}
-                {/*    //         <div className="split">*/}
-                {/*    //         <Register handleLoginOrRegister={this.handleLoginOrRegister}/>*/}
-                {/*    //         <FullList/>*/}
-                {/*// }*/}
                 <Header isLoggedIn={this.state.isLoggedIn}/>
+                <Switch>
+                    {
+                        this.state.isLoggedIn
+                            ?
+                            <>
+                                <Route path="/profile" component={Profile}/>
+                                <Route path="/register" component={Register}/>
+                                <Route path="/login" component={Login}/>
+                                <Route path="/" component={FullList}/>
+                            </>
+
+                            :
+                            <Route exact="/" component={FullList}/>
+                    }
+                </Switch>
             </div>
         );
     }
