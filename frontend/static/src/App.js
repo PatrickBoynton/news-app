@@ -8,6 +8,9 @@ import Astronomy from './components/Astronomy';
 import Cookies from 'js-cookie';
 import {Switch, Route} from 'react-router-dom';
 import FullList from './components/FullList';
+import Cosmology from './components/Cosmology';
+import Exoplanets from './components/Exoplanets';
+import Editorial from './components/Editorial';
 
 class App extends Component {
     constructor(props) {
@@ -32,20 +35,14 @@ class App extends Component {
             <div className="App">
                 <Header isLoggedIn={this.state.isLoggedIn}/>
                 <Switch>
-                    {
-                        // this.state.isLoggedIn
-                            // ?
-                            <>
-                                <Route path="/profile" component={Profile}/>
-                                <Route path="/register" component={Register}/>
-                                <Route path="/login" component={Login}/>
-                                <Route path="/astronomy" component={Astronomy}/>
-                                <Route exact path="/" component={FullList}/>
-                            </>
-
-                            // :
-                            // <Route exact="/" component={FullList}/>
-                    }
+                        <Route path="/profile" component={Profile}/>
+                        <Route path="/register" component={Register}/>
+                        <Route path="/login" component={Login}/>
+                        <Route path="/astronomy" component={Astronomy}/>
+                        <Route path="/cosmology" component={Cosmology} />
+                        <Route path="/exoplanets" component={Exoplanets}/>
+                        <Route path="/editorial" component={Editorial}/>
+                        <Route path="/" component={FullList}/>
                 </Switch>
             </div>
         );
