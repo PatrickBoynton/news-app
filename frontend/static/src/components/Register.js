@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import Cookies from 'js-cookie';
+import {NavLink} from 'react-router-dom';
 
 class Register extends Component {
     constructor(props) {
@@ -67,9 +68,7 @@ class Register extends Component {
                        name="password2"
                        id="password2"/>
                 <button className="form-btn" type="submit">Register</button>
-                <p>Already have an account? Please <button className="link"
-                                                           onClick={() => this.props.handleLoginOrRegister()}
-                                                           href="#">Login</button></p>
+                <p>Already have an account? Please <NavLink to="/login" className="link">Login</NavLink></p>
             </form>
         </>;
     }

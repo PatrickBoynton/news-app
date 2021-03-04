@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import Cookies from 'js-cookie';
+import {NavLink} from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class Login extends Component {
 
         if (data.key) {
             Cookies.set('Authorization', `Token ${data.key}`);
-            this.props.handleLoggedIn();
+            // this.props.handleLoggedIn();
         } else {
             console.log(data);
         }
@@ -65,8 +66,7 @@ class Login extends Component {
                        name="password"
                        id="password"/>
                 <button className="form-btn" type="submit">Login</button>
-                <p>Don't have an account? Why not <button className="link"
-                                                      onClick={() => this.props.handleLoginOrRegister()}>Register</button> an
+                <p>Don't have an account? Why not <NavLink to="/register" className="link">Register</NavLink> an
                 account first.
             </p>
             </form>
