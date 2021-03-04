@@ -22,7 +22,7 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-        if (this.props.isLoggedIn) {
+        if (true) {
             const articles = await fetch('/api/v1/articles/create/');
             const data = await articles.json();
             const user = await fetch('/rest-auth/user');
