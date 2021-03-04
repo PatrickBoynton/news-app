@@ -10,6 +10,7 @@ class Profile extends Component {
             preview: '',
             articles: [],
             user: '',
+            id: 0,
             title: '',
             body: ''
         };
@@ -17,13 +18,17 @@ class Profile extends Component {
         this.handleImage = this.handleImage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
-        this.handleEditOrPost = this.handleEditOrPost(this);
+        this.handleEditOrPost = this.handleEditOrPost.bind(this);
     }
 
     async componentDidMount() {
         const articles = await fetch('/api/v1/articles/create/');
         const data = await articles.json();
+        const user = await fetch("/rest-auth/user")
+        const userData = await user.json();
+        console.log(userData);
         this.setState({articles: data});
+        this.setState({user: userData.username})
     }
 
     handleImage(e) {
@@ -79,29 +84,54 @@ class Profile extends Component {
     }
 
     async handleEdit(article) {
-        // const options = {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'Application/Json',
-        //         'X-CSRFToken': Cookies.get('csrftoken')
-        //     },
-        //     body: JSON.stringify({
-        //         author: this.state.articles[0].author,
-        //         title: this.state.title,
-        //         body: this.state.body,
-        //     })
-        // };
-        // const response = await fetch(`/api/v1/articles/edit/${article.id}/`, options);
-        // const data = await response.json();
-        this.setState({title: article.title, body: article.body});
-        // this.setState((previousState) => ({isEditMode: !previousState.isEditMode}));
+        this.setState({id: article.id, title: article.title, body: article.body});
+        this.setState((previousState) => ({isEditMode: !previousState.isEditMode}));
     }
-    handleEditOrPost() {
-        
+
+    async handleEditOrPost(e, id, title, body) {
+        e.preventDefault();
+        if (this.state.isEditMode) {
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'Application/Json',
+                    'X-CSRFToken': Cookies.get('csrftoken')
+                },
+                body: JSON.stringify({
+                    author: this.state.user,
+                    title: title,
+                    body: body,
+                })
+            };
+            const response = await fetch(`/api/v1/articles/edit/${id}/`, options);
+            const data = await response.json();
+
+            this.setState({id, title: this.state.title, body: this.state.body});
+            this.setState({isEditMode: false});
+        } else {
+            const options = {
+                method: "POST",
+                headers: {
+                    "Authorization": Cookies.get("Authorization"),
+                    "X-CSRFToken": Cookies.get("csrftoken")
+                },
+                body: {
+                    body: JSON.stringify({
+                    author: this.state.user,
+                    title: title,
+                    body: body,
+                })
+                }
+            }
+
+            const response = await fetch(`/api/v1/articles/create`, options);
+            const data = await response.json();
+            this.setState({id, title: this.state.title, body: this.state.body});
+        }
     }
 
     handleInput(event) {
-        this.setState({[event.target.name]: [event.target.value]})
+        this.setState({[event.target.name]: event.target.value});
     }
 
     render() {
@@ -109,14 +139,15 @@ class Profile extends Component {
             <h2>{article.title}</h2>
             <p>{article.body}</p>
             <p>{article.author}</p>
-            <button onClick={() => this.handleEdit(article)}>Edit</button>
-            <button onClick={() => this.handleDelete(article.id)}>Delete</button>
+            <button className="form-btn" onClick={() => this.handleEdit(article)}>Edit</button>
+            <button className="form-btn" onClick={() => this.handleDelete(article.id)}>Delete</button>
         </section>);
         return <>
-            <h1>jpb3</h1>
+            <h1>{this.state.user}</h1>
             <img alt="jpb3"/>
             {articles}
-            <form action="">
+            <form action=""
+                  onSubmit={(e) => this.handleEditOrPost(e, this.state.id, this.state.title, this.state.body)}>
                 <label htmlFor="title">Title</label>
                 <input type="text"
                        value={this.state.title}
@@ -132,10 +163,10 @@ class Profile extends Component {
                     id="body"/>
                 {
                     !this.state.isEditMode
-                 ?
-                 <button className="form-btn" type="submit">Submit an Article</button>
-                 :
-                <button className="form-btn" type="submit">Edit your article</button>
+                        ?
+                        <button className="form-btn" type="submit">Submit an Article</button>
+                        :
+                        <button className="form-btn" type="submit">Edit your article</button>
                 }
             </form>
             <form action="" onSubmit={this.handleSubmit}>
