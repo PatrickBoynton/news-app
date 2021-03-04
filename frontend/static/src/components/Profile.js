@@ -22,13 +22,15 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-        const articles = await fetch('/api/v1/articles/create/');
-        const data = await articles.json();
-        const user = await fetch("/rest-auth/user")
-        const userData = await user.json();
-        console.log(userData);
-        this.setState({articles: data});
-        this.setState({user: userData.username})
+        if (this.props.isLoggedIn) {
+            const articles = await fetch('/api/v1/articles/create/');
+            const data = await articles.json();
+            const user = await fetch('/rest-auth/user');
+            const userData = await user.json();
+            this.setState({articles: data});
+            this.setState({user: userData.username});
+        }
+        console.log(this.props.isLoggedIn);
     }
 
     handleImage(e) {
@@ -60,13 +62,10 @@ class Profile extends Component {
         };
 
         const response = await fetch('/api/v1/profiles/detail/', options);
-
-        console.log(response);
     };
 
     handleLogout() {
         Cookies.remove('Authorization');
-        this.props.handleIsLoggedIn();
     }
 
     async handleDelete(id) {
@@ -79,7 +78,6 @@ class Profile extends Component {
         };
         const response = await fetch(`/api/v1/articles/delete/${id}`, options);
         const data = await response.json();
-        console.log(data);
 
     }
 
@@ -102,6 +100,7 @@ class Profile extends Component {
                     title: title,
                     body: body,
                 })
+
             };
             const response = await fetch(`/api/v1/articles/edit/${id}/`, options);
             const data = await response.json();
@@ -110,22 +109,23 @@ class Profile extends Component {
             this.setState({isEditMode: false});
         } else {
             const options = {
-                method: "POST",
+                method: 'POST',
                 headers: {
-                    "Authorization": Cookies.get("Authorization"),
-                    "X-CSRFToken": Cookies.get("csrftoken")
+                    'Content-Type': 'Application/Json',
+                    'Authorization': Cookies.get('Authorization'),
                 },
                 body: {
                     body: JSON.stringify({
-                    author: this.state.user,
-                    title: title,
-                    body: body,
-                })
+                        author: this.state.user,
+                        title: title,
+                        body: body,
+                    })
                 }
-            }
+            };
 
-            const response = await fetch(`/api/v1/articles/create`, options);
+            const response = await fetch(`/api/v1/articles/create/`, options);
             const data = await response.json();
+            console.log(data);
             this.setState({id, title: this.state.title, body: this.state.body});
         }
     }
@@ -158,7 +158,6 @@ class Profile extends Component {
                 <textarea
                     value={this.state.body}
                     onChange={this.handleInput}
-                    type="text"
                     name="body"
                     id="body"/>
                 {
