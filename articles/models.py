@@ -19,33 +19,29 @@ class Article(models.Model):
     editorial = "editorial"
 
     article_status = [
-        (pending, pending),
-        (published, published),
-        (rejected, rejected),
-        (archived, archived),
+        (pending, 'pending'),
+        (published, 'published'),
+        (rejected, 'rejected'),
+        (archived, 'archived'),
     ]
 
     article_tags = [
-        (astronomy, astronomy),
-        (cosmology, cosmology),
-        (exoplanets, exoplanets),
-        (editorial, editorial)
+        (astronomy, 'astronomy'),
+        (cosmology, 'cosmology'),
+        (exoplanets, 'exoplanets'),
+        (editorial, 'editorial')
     ]
 
     title = models.CharField(max_length=100)
     body = models.TextField(max_length=2000)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.CASCADE),
     article_status = models.CharField(choices=article_status,
                                       max_length=80,
-                                      null=True,
-                                      blank=True,
                                       default="draft")
     article_type = models.CharField(choices=article_tags,
                                     max_length=80,
-                                    null=True,
-                                    blank=True,
                                     default="astronomy")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
+
