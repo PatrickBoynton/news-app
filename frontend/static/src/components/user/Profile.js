@@ -22,15 +22,16 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-        if (true) {
-            const articles = await fetch('/api/v1/articles/create/');
-            const data = await articles.json();
-            const user = await fetch('/rest-auth/user');
-            const userData = await user.json();
+        const articles = await fetch('/api/v1/articles/create/');
+        const data = await articles.json().catch(error => console.log(error));
+        const user = await fetch('/rest-auth/user');
+        const userData = await user.json();
+        if (data !== undefined) {
             this.setState({articles: data});
-            this.setState({user: userData.username});
+        } else {
+            this.setState({articles: []})
         }
-        console.log(this.props.isLoggedIn);
+        this.setState({user: userData.username});
     }
 
     handleImage(e) {
@@ -135,47 +136,51 @@ class Profile extends Component {
     }
 
     render() {
-        const articles = this.state.articles.map(article => <section key={article.id}>
+        const articles = this.state.articles?.map(article => <section key={article.id}>
             <h2>{article.title}</h2>
             <p>{article.body}</p>
             <p>{article.author}</p>
             <button className="form-btn" onClick={() => this.handleEdit(article)}>Edit</button>
             <button className="form-btn" onClick={() => this.handleDelete(article.id)}>Delete</button>
         </section>);
-        return <>
-            <h1>{this.state.user}</h1>
-            <img alt="jpb3"/>
-            {articles}
-            <form action=""
-                  onSubmit={(e) => this.handleEditOrPost(e, this.state.id, this.state.title, this.state.body)}>
-                <label htmlFor="title">Title</label>
-                <input type="text"
-                       value={this.state.title}
-                       onChange={this.handleInput}
-                       name="title"
-                       id="title"/>
-                <label htmlFor="body">Body</label>
-                <textarea
-                    value={this.state.body}
-                    onChange={this.handleInput}
-                    name="body"
-                    id="body"/>
-                {
-                    !this.state.isEditMode
-                        ?
-                        <button className="form-btn" type="submit">Submit an Article</button>
-                        :
-                        <button className="form-btn" type="submit">Edit your article</button>
-                }
-            </form>
-            <form action="" onSubmit={this.handleSubmit}>
-                <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>
-                {
-                    this.state.profile_picture && <img src={this.state.preview} alt="preview"/>
-                }
-            </form>
-            <button onClick={() => this.handleLogout()} className="form-btn">Logout</button>
-        </>;
+        if (this.props.isLoggedIn) {
+            return <>
+                <h1>{this.state.user}</h1>
+                <img alt="jpb3"/>
+                {articles}
+                <form action=""
+                      onSubmit={(e) => this.handleEditOrPost(e, this.state.id, this.state.title, this.state.body)}>
+                    <label htmlFor="title">Title</label>
+                    <input type="text"
+                           value={this.state.title}
+                           onChange={this.handleInput}
+                           name="title"
+                           id="title"/>
+                    <label htmlFor="body">Body</label>
+                    <textarea
+                        value={this.state.body}
+                        onChange={this.handleInput}
+                        name="body"
+                        id="body"/>
+                    {
+                        !this.state.isEditMode
+                            ?
+                            <button className="form-btn" type="submit">Submit an Article</button>
+                            :
+                            <button className="form-btn" type="submit">Edit your article</button>
+                    }
+                </form>
+                <form action="" onSubmit={this.handleSubmit}>
+                    <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>
+                    {
+                        this.state.profile_picture && <img src={this.state.preview} alt="preview"/>
+                    }
+                </form>
+                <button onClick={() => this.handleLogout()} className="form-btn">Logout</button>
+            </>;
+        } else {
+            return <div>Please Log in</div>;
+        }
     }
 }
 
