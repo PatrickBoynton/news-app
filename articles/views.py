@@ -16,7 +16,7 @@ class ArticleCreateView(generics.ListCreateAPIView):
     serializer_class = ArticleSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get_queryset(self):
+    def perform_create(self):
         user = self.request.user
         return models.Article.objects.filter(author=user)
 
