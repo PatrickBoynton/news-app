@@ -39,11 +39,13 @@ class Article(models.Model):
     article_status = models.CharField(choices=article_status,
                                       max_length=80,
                                       null=True,
-                                      blank=True)
+                                      blank=True,
+                                      default="draft")
     article_type = models.CharField(choices=article_tags,
                                     max_length=80,
                                     null=True,
-                                    blank=True)
+                                    blank=True,
+                                    default="astronomy")
 
     def __str__(self):
         return self.title
