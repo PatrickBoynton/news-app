@@ -22,6 +22,7 @@ class App extends Component {
             preview: ''
         };
         this.handleLoginOrRegister = this.handleLoginOrRegister.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     handleLoginOrRegister() {
