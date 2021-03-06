@@ -1,8 +1,30 @@
 import {Component} from 'react';
 
 class Astronomy extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            articles: []
+        };
+    }
+
+    async componentDidMount() {
+        const response = await fetch('/api/v1/articles/astronomy/');
+        const data = await response.json();
+        this.setState({articles: data});
+    }
+
     render() {
-        return <div>Astronomy</div>;
+        const astro_articles = this.state.articles.map(article => <section key={article.id}>
+            <>
+                <h2>{article.title}</h2>
+                <p>{article.body}</p>
+                <p>{article.author}</p>
+                <p>{article.article_type}</p>
+            </>
+        </section>);
+        return <>{astro_articles}</>;
     }
 }
 
