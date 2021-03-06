@@ -35,7 +35,8 @@ class ArticleFilterView(generics.ListAPIView):
 
     def get_queryset(self):
         article_type = self.kwargs["article_type"]
-        return models.Article.objects.filter(article_type=article_type)
+        return models.Article.objects.filter(article_type=article_type,
+                                             article_status="published")
 
 
 class ArticleDeleteView(generics.RetrieveDestroyAPIView):
