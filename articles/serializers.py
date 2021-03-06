@@ -13,10 +13,3 @@ class ArticleSerializer(serializers.ModelSerializer):
                   'author',
                   'article_status',
                   'article_type')
-
-
-# class ArticleCreateSerializer(serializers.ModelSerializer):
-#
-#     class Meta:
-#         model = models.Article
-#         fields = ('title', 'body', 'article_status', 'article_type')
