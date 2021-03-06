@@ -12,7 +12,6 @@ class FullList extends Component {
     async componentDidMount() {
         const response = await fetch('/api/v1/articles/');
         const data = await response.json();
-        console.log(data);
         this.setState({articles: data});
     }
 
@@ -20,12 +19,14 @@ class FullList extends Component {
     render() {
         const articles = this.state.articles.map(article => <section key={article.id}>
             {
+                // Ignore the warnings.
                 article.article_status === 'published'
                     ?
                     <>
                         <h2>{article.title}</h2>
                         <p>{article.body}</p>
                         <p>{article.author}</p>
+                        <p>{article.article_type}</p>
                     </>
                     :
                     null
