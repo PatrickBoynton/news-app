@@ -30,6 +30,14 @@ class ArticleEditView(generics.RetrieveUpdateAPIView):
         return models.Article.objects.filter(author=user)
 
 
+class ArticleFilterView(generics.ListAPIView):
+    serializer_class = ArticleSerializer
+
+    def get_queryset(self):
+        article_type = self.kwargs["article_type"]
+        return models.Article.objects.filter(article_type=article_type)
+
+
 class ArticleDeleteView(generics.RetrieveDestroyAPIView):
     queryset = models.Article.objects.all()
     serializer_class = ArticleSerializer
