@@ -6,7 +6,7 @@ class FullList extends Component {
         super(props);
         this.state = {
             articles: []
-        };
+    };
     }
 
     async componentDidMount() {
