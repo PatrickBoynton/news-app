@@ -11,13 +11,19 @@ class ArticlesListView(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-# class ArticleCreateView(generics.CreateAPIView):
-#     queryset = models.Article.objects.all()
-#     serializer_class = ArticleCreateSerializer
-#     permission_classes = (permissions.IsAuthenticated,)
-#
-#     def perform_create(self, serializer):
-#         serializer.save(author=self.request.user)
+class ArticleDetailView(generics.RetrieveAPIView):
+    queryset = models.Article.objects.all()
+    serializer_class = ArticleSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class ArticleCreateView(generics.CreateAPIView):
+    queryset = models.Article.objects.all()
+    serializer_class = ArticleSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 
 class ArticleEditView(generics.RetrieveUpdateAPIView):

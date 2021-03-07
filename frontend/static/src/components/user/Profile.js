@@ -12,7 +12,8 @@ class Profile extends Component {
             user: '',
             id: 0,
             title: '',
-            body: ''
+            body: '',
+            article_type: ''
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleImage = this.handleImage.bind(this);
@@ -22,7 +23,7 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-        const articles = await fetch('/api/v1/articles/create/');
+        const articles = await fetch('/api/v1/articles/');
         const data = await articles.json().catch(error => console.log(error));
         const user = await fetch('/rest-auth/user');
         const userData = await user.json();
@@ -83,7 +84,7 @@ class Profile extends Component {
     }
 
     async handleEdit(article) {
-        this.setState({id: article.id, title: article.title, body: article.body});
+        this.setState({id: article.id, title: article.title, body: article.body, article_type: article.article_type});
         this.setState((previousState) => ({isEditMode: !previousState.isEditMode}));
     }
 
@@ -106,7 +107,7 @@ class Profile extends Component {
             const response = await fetch(`/api/v1/articles/edit/${id}/`, options);
             const data = await response.json();
 
-            this.setState({id, title: this.state.title, body: this.state.body});
+            this.setState({id, title: this.state.title, body: this.state.body, });
             this.setState({isEditMode: false});
         } else {
             const options = {
@@ -140,13 +141,13 @@ class Profile extends Component {
             <h2>{article.title}</h2>
             <p>{article.body}</p>
             <p>{article.author}</p>
-            <button className="form-btn" onClick={() => this.handleEdit(article)}>Edit</button>
-            <button className="form-btn" onClick={() => this.handleDelete(article.id)}>Delete</button>
+            <button className="btn" onClick={() => this.handleEdit(article)}>Edit</button>
+            <button className="btn" onClick={() => this.handleDelete(article.id)}>Delete</button>
         </section>);
         if (this.props.isLoggedIn) {
             return <>
                 <h1>{this.state.user}</h1>
-                <img alt="jpb3"/>
+                {/*<img alt="jpb3"/>*/}
                 {articles}
                 <form action=""
                       onSubmit={(e) => this.handleEditOrPost(e, this.state.id, this.state.title, this.state.body)}>
@@ -162,6 +163,16 @@ class Profile extends Component {
                         onChange={this.handleInput}
                         name="body"
                         id="body"/>
+                    <select>
+                        <option name="astronomy"
+                                value={this.state.article_type}>Astronomy</option>
+                        <option name="cosmology"
+                                value={this.state.article_type}>Cosmology</option>
+                        <option name="exoplanets"
+                                value={this.state.article_type}>Exoplanets</option>
+                        <option name="editorial"
+                                value={this.state.article_type}>Editorial</option>
+                    </select>
                     {
                         !this.state.isEditMode
                             ?
@@ -170,6 +181,7 @@ class Profile extends Component {
                             <button className="form-btn" type="submit">Edit your article</button>
                     }
                 </form>
+                {/*The image uploader.*/}
                 <form action="" onSubmit={this.handleSubmit}>
                     <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>
                     {

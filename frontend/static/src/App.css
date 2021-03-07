@@ -11,6 +11,7 @@ button{
   margin-top: 5px;
   overflow: visible;
   width: auto;
+  cursor: pointer;
 }
 button.link{
   color: #CD0505;
@@ -43,4 +44,11 @@ a:-webkit-any-link{
   color: #cd0505;
   text-decoration: none;
   padding: 0 30px;
+}
+.btn{
+  border-radius: 3px;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 3px;
+  background-color: #CD0505;
 }
