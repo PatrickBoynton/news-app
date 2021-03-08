@@ -1,6 +1,7 @@
-db.sqlite3
+#db.sqlite3
 /.idea/
 *.xml
 *.iml
 .env
 .DS_Store
+conf/__pycache__/
