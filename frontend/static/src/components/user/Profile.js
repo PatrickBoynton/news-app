@@ -11,6 +11,7 @@ class Profile extends Component {
             articles: [],
             user: '',
             id: 0,
+            author: '',
             title: '',
             body: '',
             article_type: ''
@@ -27,10 +28,11 @@ class Profile extends Component {
         const data = await articles.json().catch(error => console.log(error));
         const user = await fetch('/rest-auth/user');
         const userData = await user.json();
+        const articles_by_user = data.filter(x => x.author === userData.username);
         if (data !== undefined) {
-            this.setState({articles: data});
+            this.setState({articles: articles_by_user});
         } else {
-            this.setState({articles: []})
+            this.setState({articles: []});
         }
         this.setState({user: userData.username});
     }
@@ -88,7 +90,7 @@ class Profile extends Component {
         this.setState((previousState) => ({isEditMode: !previousState.isEditMode}));
     }
 
-    async handleEditOrPost(e, id, title, body) {
+    async handleEditOrPost(e, id, title, body, article_type) {
         e.preventDefault();
         if (this.state.isEditMode) {
             const options = {
@@ -107,7 +109,13 @@ class Profile extends Component {
             const response = await fetch(`/api/v1/articles/edit/${id}/`, options);
             const data = await response.json();
 
-            this.setState({id, title: this.state.title, body: this.state.body, });
+            this.setState({
+                id,
+                title: this.state.title,
+                author: this.state.author,
+                body: this.state.body,
+                article_type: this.state.article_type
+            });
             this.setState({isEditMode: false});
         } else {
             const options = {
@@ -121,6 +129,7 @@ class Profile extends Component {
                         author: this.state.user,
                         title: title,
                         body: body,
+                        article_type: article_type
                     })
                 }
             };
@@ -128,7 +137,11 @@ class Profile extends Component {
             const response = await fetch(`/api/v1/articles/create/`, options);
             const data = await response.json();
             console.log(data);
-            this.setState({id, title: this.state.title, body: this.state.body});
+            this.setState({id,
+                                 title: title,
+                                 body: body,
+                                 author: this.state.user,
+                                 article_type: article_type});
         }
     }
 
@@ -150,7 +163,11 @@ class Profile extends Component {
                 {/*<img alt="jpb3"/>*/}
                 {articles}
                 <form action=""
-                      onSubmit={(e) => this.handleEditOrPost(e, this.state.id, this.state.title, this.state.body)}>
+                      onSubmit={(e) => this.handleEditOrPost(e, this.state.id,
+                          this.state.title,
+                          this.state.body,
+                          this.state.author,
+                          this.state.article_type)}>
                     <label htmlFor="title">Title</label>
                     <input type="text"
                            value={this.state.title}
@@ -165,13 +182,17 @@ class Profile extends Component {
                         id="body"/>
                     <select>
                         <option name="astronomy"
-                                value={this.state.article_type}>Astronomy</option>
+                                value={this.state.article_type}>Astronomy
+                        </option>
                         <option name="cosmology"
-                                value={this.state.article_type}>Cosmology</option>
+                                value={this.state.article_type}>Cosmology
+                        </option>
                         <option name="exoplanets"
-                                value={this.state.article_type}>Exoplanets</option>
+                                value={this.state.article_type}>Exoplanets
+                        </option>
                         <option name="editorial"
-                                value={this.state.article_type}>Editorial</option>
+                                value={this.state.article_type}>Editorial
+                        </option>
                     </select>
                     {
                         !this.state.isEditMode
