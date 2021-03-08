@@ -12,9 +12,11 @@ class ArticlesListView(generics.ListCreateAPIView):
 
 
 class ArticleDetailView(generics.RetrieveAPIView):
-    queryset = models.Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        user = self.kwargs["user"]
+        return models.Article.objects.filter(user=user)
 
 
 class ArticleCreateView(generics.CreateAPIView):
