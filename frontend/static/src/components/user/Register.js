@@ -29,7 +29,6 @@ class Register extends Component {
 
         const response = await fetch('/rest-auth/registration/', options);
         const data = await response.json().catch(error => console.log(error));
-        // console.log(object);
         if (data.key) {
             Cookies.set('Authorization', `Token ${data.key}`);
         }
