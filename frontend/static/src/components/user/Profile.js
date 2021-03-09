@@ -91,7 +91,6 @@ class Profile extends Component {
     }
 
     async handleEditOrPost(e, id, title, body, article_type) {
-        e.preventDefault();
         if (this.state.isEditMode) {
             const options = {
                 method: 'PUT',
@@ -134,14 +133,14 @@ class Profile extends Component {
                 }
             };
 
-            const response = await fetch(`/api/v1/articles/create/`, options);
+            const response = await fetch(`/api/v1/articles/`, options);
             const data = await response.json();
             console.log(data);
             this.setState({id,
-                                 title: title,
-                                 body: body,
+                                 title: data.title,
+                                 body: data.body,
                                  author: this.state.user,
-                                 article_type: article_type});
+                                 article_type: data.article_type});
         }
     }
 
