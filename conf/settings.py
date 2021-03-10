@@ -23,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = '*#-^(#e1uq97g#^txrk*0_)#x8otvuohmv*06vm1+&a617lss3'
 SECRET_KEY = os.environ.get("SECRET_KEY")
+DATABASE_URL = os.environ.get("DATABASE_URL")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
