@@ -14,7 +14,7 @@ class Profile extends Component {
             author: '',
             title: '',
             body: '',
-            article_type: ''
+            article_type: 'astronomy'
         };
         this.handleLogout = this.handleLogout.bind(this);
         this.handleImage = this.handleImage.bind(this);
@@ -82,7 +82,7 @@ class Profile extends Component {
         };
         const response = await fetch(`/api/v1/articles/delete/${id}`, options);
         const data = await response.json();
-
+        console.log(data);
     }
 
     async handleEdit(article) {
@@ -108,12 +108,12 @@ class Profile extends Component {
             };
             const response = await fetch(`/api/v1/articles/edit/${id}/`, options);
             const data = await response.json();
-
+            console.log(data);
             this.setState({
                 id,
                 title: title,
-                author: this.state.author,
                 body: body,
+                author: this.state.user,
                 article_type: article_type
             });
             this.setState({isEditMode: false});
@@ -124,22 +124,20 @@ class Profile extends Component {
                     'Content-Type': 'Application/Json',
                     'X-CSRFToken': Cookies.get('csrftoken')
                 },
-                body: {
-                    body: JSON.stringify({
-                        author: this.state.user,
-                        title: this.state.title,
-                        body: this.state.title,
-                        article_type: this.state.article_type
-                    })
-                }
+                body: JSON.stringify({
+                    author: this.state.author,
+                    title: this.state.title,
+                    body: this.state.title,
+                    article_type: this.state.article_type
+                })
             };
 
-            // const response = await fetch(`/api/v1/articles/`, options);
-            // const data = await response.json();
-
-            fetch("/api/v1/articles/", options)
-                .then(response => response.json())
-                .then(data => console.log(data))
+            const response = await fetch(`/api/v1/articles/`, options);
+            const data = await response.json();
+            console.log(data);
+            // fetch("/api/v1/articles/", options)
+            //     .then(response => response.json())
+            //     .then(data => this.setState()
         }
     }
 
@@ -160,7 +158,7 @@ class Profile extends Component {
                 <h1>{this.state.user}</h1>
                 {/*<img alt="jpb3"/>*/}
                 {articles}
-                <form action=""
+                <form method="/"
                       onSubmit={(e) => this.handleEditOrPost(e, this.state.id,
                           this.state.title,
                           this.state.body,
@@ -178,18 +176,18 @@ class Profile extends Component {
                         onChange={this.handleInput}
                         name="body"
                         id="body"/>
-                    <select>
+                    <select onChange={this.handleInput}>
                         <option name="astronomy"
-                                value={this.state.article_type}>Astronomy
+                                value="astronomy">Astronomy
                         </option>
                         <option name="cosmology"
-                                value={this.state.article_type}>Cosmology
+                                value="cosmology">Cosmology
                         </option>
                         <option name="exoplanets"
-                                value={this.state.article_type}>Exoplanets
+                                value="exoplanets">Exoplanets
                         </option>
                         <option name="editorial"
-                                value={this.state.article_type}>Editorial
+                                value="editorial">Editorial
                         </option>
                     </select>
                     {
@@ -201,7 +199,7 @@ class Profile extends Component {
                     }
                 </form>
                 {/*The image uploader.*/}
-                <form action="" onSubmit={this.handleSubmit}>
+                <form action="/profile" onSubmit={this.handleSubmit}>
                     <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>
                     {
                         this.state.profile_picture && <img src={this.state.preview} alt="preview"/>
