@@ -45,7 +45,7 @@ class Login extends Component {
 
     render() {
         return <>
-            <form action="" onSubmit={(e) => this.handleLogin(e, this.state)}>
+            <form method="/profile" onSubmit={(e) => this.handleLogin(e, this.state)}>
                 <h2>Login</h2>
                 <label htmlFor="username">Username</label>
                 <input type="text"
