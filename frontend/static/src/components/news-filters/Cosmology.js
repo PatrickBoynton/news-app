@@ -14,7 +14,7 @@ class Cosmology extends Component{
     }
 
     render() {
-        const cosmo_articles = this.state.articles.map(article => <section key={article.id}>
+        const cosmo_articles = this.state.articles?.map(article => <section key={article.id}>
             <h2>{article.title}</h2>
             <p>{article.body}</p>
             <p>{article.author}</p>

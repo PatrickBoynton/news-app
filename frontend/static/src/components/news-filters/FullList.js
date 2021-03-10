@@ -17,7 +17,7 @@ class FullList extends Component {
 
 
     render() {
-        const articles = this.state.articles.map(article => <section key={article.id}>
+        const articles = this.state.articles?.map(article => <section key={article.id}>
             {
                 // Ignore the warnings.
                 article.article_status === 'published'

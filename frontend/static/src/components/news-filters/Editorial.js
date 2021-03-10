@@ -16,7 +16,7 @@ class Editorial extends Component {
     }
 
     render() {
-        const editorial_articles = this.state.articles.map(article => <section key={article.id}>
+        const editorial_articles = this.state.articles?.map(article => <section key={article.id}>
             <h2>{article.title}</h2>
             <p>{article.body}</p>
             <p>{article.author}</p>
