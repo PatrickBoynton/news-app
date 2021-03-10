@@ -91,6 +91,7 @@ class Profile extends Component {
     }
 
     async handleEditOrPost(e, id, title, body, article_type) {
+        e.preventDefault();
         if (this.state.isEditMode) {
             const options = {
                 method: 'PUT',
@@ -110,10 +111,10 @@ class Profile extends Component {
 
             this.setState({
                 id,
-                title: this.state.title,
+                title: title,
                 author: this.state.author,
-                body: this.state.body,
-                article_type: this.state.article_type
+                body: body,
+                article_type: article_type
             });
             this.setState({isEditMode: false});
         } else {
@@ -121,26 +122,24 @@ class Profile extends Component {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'Application/Json',
-                    'Authorization': Cookies.get('Authorization'),
+                    'X-CSRFToken': Cookies.get('csrftoken')
                 },
                 body: {
                     body: JSON.stringify({
                         author: this.state.user,
-                        title: title,
-                        body: body,
-                        article_type: article_type
+                        title: this.state.title,
+                        body: this.state.title,
+                        article_type: this.state.article_type
                     })
                 }
             };
 
-            const response = await fetch(`/api/v1/articles/`, options);
-            const data = await response.json();
-            console.log(data);
-            this.setState({id,
-                                 title: data.title,
-                                 body: data.body,
-                                 author: this.state.user,
-                                 article_type: data.article_type});
+            // const response = await fetch(`/api/v1/articles/`, options);
+            // const data = await response.json();
+
+            fetch("/api/v1/articles/", options)
+                .then(response => response.json())
+                .then(data => console.log(data))
         }
     }
 
