@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 
 class Header extends Component {
     render() {
@@ -7,6 +7,7 @@ class Header extends Component {
         if(this.props.isLoggedIn) {
             return <header>
             <nav>
+                <Link to='/news'>GN</Link>
                 <Link to="/news">News</Link>
                 <Link to="/astronomy">Astronomy</Link>
                 <Link to="/cosmology">Cosmology</Link>
@@ -19,14 +20,15 @@ class Header extends Component {
         } else{
             return <header>
             <nav>
-                <Link to="/news">News</Link>
-                <Link to="/astronomy">Astronomy</Link>
-                <Link to="/cosmology">Cosmology</Link>
-                <Link to="/exoplanets">Exoplanets</Link>
-                <Link to="/editorial">Editorial</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
-                <Link to="/"/>
+                <NavLink className='brand' exact to='/'>GN</NavLink>
+                <NavLink activeClassName='active' to="/news">News</NavLink>
+                <NavLink activeClassName='active' to="/astronomy">Astronomy</NavLink>
+                <NavLink activeClassName='active' to="/cosmology">Cosmology</NavLink>
+                <NavLink activeClassName='active' to="/exoplanets">Exoplanets</NavLink>
+                <NavLink activeClassName='active' to="/editorial">Editorial</NavLink>
+                <NavLink activeClassName='active' to="/login">Login</NavLink>
+                <NavLink activeClassName='active' to="/register">Register</NavLink>
+                {/*<NavLink to="/"/>*/}
             </nav>
         </header>;
         }
