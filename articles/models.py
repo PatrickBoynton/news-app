@@ -41,6 +41,8 @@ class Article(models.Model):
                                     max_length=80,
                                     default="astronomy")
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    article_created_at = models.DateField(auto_now_add=True, null=True, blank=True)
+    image = models.ImageField(upload_to='articles', null=True, blank=True)
 
     def __str__(self):
         return self.title
