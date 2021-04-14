@@ -45,7 +45,8 @@ class Login extends Component {
 
     render() {
         return <>
-            <form method="/profile" onSubmit={(e) => this.handleLogin(e, this.state)}>
+            <form className='login' method="/profile" onSubmit={(e) => this.handleLogin(e, this.state)}>
+                    <img className="sombrero" src={process.env.PUBLIC_URL + '/Sombrero.jpeg'}  alt=""/>
                 <h2>Login</h2>
                 <label htmlFor="username">Username</label>
                 <input type="text"
