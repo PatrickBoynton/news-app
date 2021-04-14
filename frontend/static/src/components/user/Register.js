@@ -40,6 +40,9 @@ class Register extends Component {
 
     render() {
         return <>
+            <div className="register-text">
+                <p>Have a news story you want to share? Create an account and start submitting your stories today!</p>
+            </div>
             <form onSubmit={(e) => this.handleRegister(e, this.state)}>
                 <h2>Register</h2>
                 <label htmlFor="username">Username</label>
