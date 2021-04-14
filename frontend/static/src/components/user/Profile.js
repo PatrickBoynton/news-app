@@ -122,10 +122,10 @@ class Profile extends Component {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'Application/Json',
-                    'X-CSRFToken': Cookies.get('csrftoken')
+                    'X-CSRFToken': Cookies.get('csrftoken'),
                 },
                 body: JSON.stringify({
-                    author: this.state.author,
+                    author: this.state.user,
                     title: this.state.title,
                     body: this.state.title,
                     article_type: this.state.article_type
@@ -135,9 +135,6 @@ class Profile extends Component {
             const response = await fetch(`/api/v1/articles/`, options);
             const data = await response.json();
             console.log(data);
-            // fetch("/api/v1/articles/", options)
-            //     .then(response => response.json())
-            //     .then(data => this.setState()
         }
     }
 
