@@ -1,54 +1,112 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
-form{
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  margin: 10% auto 0 auto;
+
+form {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    margin: 10% auto 0 auto;
+    background: #ffffff;
+    color: #242424;
+    color: #000000;
+}
+input{
+    background-color: #242424;
+    margin: 5px;
+    padding: 8px;
 }
 button{
-  margin-top: 5px;
-  overflow: visible;
-  width: auto;
-  cursor: pointer;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #cd0505;
+    color: #fff;
+    border: 2px solid #242424;
+    padding: 8px;
 }
-button.link{
-  color: #CD0505;
-  background:none;
-  margin: 0;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  text-decoration: underline;
+.sombrero{
+    display: inline;
 }
-.form-btn{
-  background: none #cd0505;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 50px;
-  box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.4);
+a{
+    color: #cd0505;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 20px;
 }
-input, textarea {
-  background-color: #242424;
-  border-bottom: 2px solid #fff;
-  border-right: 2px solid #fff;
-  color: white;
+.brand{
+    font-size: 30px;
 }
-.split{
-  display: flex;
-  flex-direction: row-reverse;
+form  a {
+    font-size: 16px;
 }
-a:-webkit-any-link{
-  color: #cd0505;
-  text-decoration: none;
-  padding: 0 30px;
-}
-.btn{
-  border-radius: 3px;
-  border: none;
-  padding: 5px 10px;
-  margin-left: 3px;
-  background-color: #CD0505;
-}
+/*img{*/
+/*    width: 100%;*/
+/*}*/
+
+/*button {*/
+/*    margin-top: 5px;*/
+/*    overflow: visible;*/
+/*    width: auto;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*button.link {*/
+/*    color: #CD0505;*/
+/*    background: none;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    text-decoration: underline;*/
+/*}*/
+
+/*.form-btn {*/
+/*    background: none #cd0505;*/
+/*    border: none;*/
+/*    padding: 5px;*/
+/*    cursor: pointer;*/
+/*    border-radius: 50px;*/
+/*    box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.4);*/
+/*}*/
+
+/*input, textarea {*/
+/*    background-color: #242424;*/
+/*    border-bottom: 2px solid #fff;*/
+/*    border-right: 2px solid #fff;*/
+/*    color: white;*/
+/*}*/
+
+/*a {*/
+/*    color: #cd0505;*/
+/*    text-decoration: none;*/
+/*    padding: 10px;*/
+/*}*/
+/*.login{*/
+/*    background-color: #fff;*/
+/*    padding: 50px 20px 50px 500px;*/
+/*    border-radius: 6px;*/
+/*}*/
+/*.sombrero{*/
+/*    width: 100%;*/
+/*}*/
+
+/*.active {*/
+/*    color: aqua;*/
+/*}*/
+
+/*.brand {*/
+/*    font-size: 30px;*/
+/*}*/
+
+/*.btn {*/
+/*    border-radius: 3px;*/
+/*    border: none;*/
+/*    padding: 5px 10px;*/
+/*    margin-left: 3px;*/
+/*    background-color: #CD0505;*/
+/*}*/
+
+/*nav {*/
+/*    padding: 20px;*/
+/*}*/
+
