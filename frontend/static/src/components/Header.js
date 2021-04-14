@@ -26,8 +26,10 @@ class Header extends Component {
                 <NavLink activeClassName='active' to="/cosmology">Cosmology</NavLink>
                 <NavLink activeClassName='active' to="/exoplanets">Exoplanets</NavLink>
                 <NavLink activeClassName='active' to="/editorial">Editorial</NavLink>
-                <NavLink activeClassName='active' to="/login">Login</NavLink>
-                <NavLink activeClassName='active' to="/register">Register</NavLink>
+                <span style={{paddingLeft: '200px'}} >
+                    <NavLink activeClassName='active' to="/login">Login</NavLink>
+                    <NavLink activeClassName='active' to="/register">Register</NavLink>
+                </span>
                 {/*<NavLink to="/"/>*/}
             </nav>
         </header>;
