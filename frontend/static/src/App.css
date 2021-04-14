@@ -6,30 +6,48 @@ form {
     display: flex;
     width: 30%;
     flex-direction: column;
-    margin: 10% auto 0 auto;
+    margin: 4% auto 0 auto;
     background: #ffffff;
     color: #242424;
     color: #000000;
 }
 input{
     background-color: #242424;
-    margin: 5px;
+    margin: 15px;
     padding: 8px;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 6px;
+}
+textarea{
+    background-color: #242424;
+    margin: 15px;
+}
+select{
+    background-color: #242424;
+    color: #fff;
+    margin: 0 15px;
+    font-size: 20px;
+}
+input[type="file"] {
+    border: none;
 }
 button{
-    margin: 5px;
+    margin: 15px;
     cursor: pointer;
     background-color: #cd0505;
     color: #fff;
     border: 2px solid #242424;
     padding: 8px;
+    border-radius: 6px;
+    font-size: 20px;
 }
 .sombrero{
     display: inline;
 }
 a{
     color: #cd0505;
-    padding: 10px;
+    padding: 22px;
     text-decoration: none;
     font-size: 20px;
 }
@@ -38,6 +56,7 @@ a{
 }
 form  a {
     font-size: 16px;
+    padding: 0;
 }
 /*img{*/
 /*    width: 100%;*/
