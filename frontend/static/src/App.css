@@ -1,146 +1,88 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 form {
-  display: flex;
-  width: 30%;
-  flex-direction: column;
-  margin: 4% auto 0 auto;
-  background: #ffffff;
-  color: #242424;
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    margin: 4% auto 0 auto;
+    background: #ffffff;
+    color: #242424;
 }
+
 input {
-  background-color: #242424;
-  margin: 15px;
-  padding: 8px;
-  color: #fff;
-  font-size: 20px;
-  border-radius: 6px;
+    background-color: #242424;
+    margin: 15px;
+    padding: 8px;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 6px;
 }
+
 textarea {
-  background-color: #242424;
-  margin: 15px;
+    background-color: #242424;
+    margin: 15px;
 }
+
 select {
-  background-color: #242424;
-  color: #fff;
-  margin: 0 15px;
-  font-size: 20px;
+    background-color: #242424;
+    color: #fff;
+    margin: 0 15px;
+    font-size: 20px;
 }
+
 input[type="file"] {
-  border: none;
+    border: none;
 }
+
 button {
-  margin: 15px;
-  cursor: pointer;
-  background-color: #cd0505;
-  color: #fff;
-  border: 2px solid #242424;
-  padding: 8px;
-  border-radius: 6px;
-  font-size: 20px;
+    margin: 15px;
+    cursor: pointer;
+    background-color: #cd0505;
+    color: #fff;
+    border: 2px solid #242424;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 20px;
 }
+
 .sombrero {
-  display: inline;
+    display: inline;
 }
+
 a {
-  color: #cd0505;
-  padding: 22px;
-  text-decoration: none;
-  font-size: 20px;
+    color: #cd0505;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+nav a {
+    padding: 22px;
 }
 .brand {
-  font-size: 30px;
+    font-size: 30px;
 }
+
 form a {
-  font-size: 16px;
-  padding: 0;
+    font-size: 16px;
+    padding: 0;
 }
+
 article {
-  width: 30%;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 5px;
-  margin: 20px auto;
+    width: 85%;
+    border-radius: 5px;
+    margin: 20px auto;
 }
+
 img {
-  width: 100%;
+    width: 100%;
 }
+
 .container {
-  display: flex;
+    display: flex;
 }
-/* h2 a {
-  padding: 0;
-  margin: 0;
-} */
-/*img{*/
-/*    width: 100%;*/
-/*}*/
 
-/*button {*/
-/*    margin-top: 5px;*/
-/*    overflow: visible;*/
-/*    width: auto;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*button.link {*/
-/*    color: #CD0505;*/
-/*    background: none;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    border: none;*/
-/*    cursor: pointer;*/
-/*    text-decoration: underline;*/
-/*}*/
-
-/*.form-btn {*/
-/*    background: none #cd0505;*/
-/*    border: none;*/
-/*    padding: 5px;*/
-/*    cursor: pointer;*/
-/*    border-radius: 50px;*/
-/*    box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.4);*/
-/*}*/
-
-/*input, textarea {*/
-/*    background-color: #242424;*/
-/*    border-bottom: 2px solid #fff;*/
-/*    border-right: 2px solid #fff;*/
-/*    color: white;*/
-/*}*/
-
-/*a {*/
-/*    color: #cd0505;*/
-/*    text-decoration: none;*/
-/*    padding: 10px;*/
-/*}*/
-/*.login{*/
-/*    background-color: #fff;*/
-/*    padding: 50px 20px 50px 500px;*/
-/*    border-radius: 6px;*/
-/*}*/
-/*.sombrero{*/
-/*    width: 100%;*/
-/*}*/
-
-/*.active {*/
-/*    color: aqua;*/
-/*}*/
-
-/*.brand {*/
-/*    font-size: 30px;*/
-/*}*/
-
-/*.btn {*/
-/*    border-radius: 3px;*/
-/*    border: none;*/
-/*    padding: 5px 10px;*/
-/*    margin-left: 3px;*/
-/*    background-color: #CD0505;*/
-/*}*/
-
-/*nav {*/
-/*    padding: 20px;*/
-/*}*/
+.ad {
+    margin-top: 50%;
+}
