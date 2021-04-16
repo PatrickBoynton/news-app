@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 
 class Article extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
-      <article key={this.props.article.id}>
+      <article>
         {
           // Ignore the warnings.
           <>
