@@ -58,17 +58,17 @@ form a {
   padding: 0;
 }
 article {
-  width: 50%;
+  width: 30%;
   padding: 20px;
   margin: 20px;
   border-radius: 5px;
   margin: 20px auto;
 }
-h2 {
-  color: blue;
-}
 img {
   width: 100%;
+}
+.container {
+  display: flex;
 }
 /* h2 a {
   padding: 0;
