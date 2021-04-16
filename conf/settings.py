@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     # Installed apps.
     'accounts.apps.AccountsConfig',
+    'ads.apps.AdsConfig',
     'api.apps.ApiConfig',
     'articles.apps.ArticlesConfig',
     'frontend.apps.FrontendConfig',
