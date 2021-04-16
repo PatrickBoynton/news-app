@@ -65,7 +65,7 @@ class Profile extends Component {
             body: formData
         };
 
-        const response = await fetch('/api/v1/profiles/detail/', options);
+        await fetch('/api/v1/profiles/detail/', options);
     };
 
     handleLogout() {
@@ -132,9 +132,7 @@ class Profile extends Component {
                 })
             };
 
-            const response = await fetch(`/api/v1/articles/`, options);
-            const data = await response.json();
-            console.log(data);
+            await fetch(`/api/v1/articles/`, options);
         }
     }
 
