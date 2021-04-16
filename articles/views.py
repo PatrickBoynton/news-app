@@ -1,5 +1,5 @@
 from . import models
-from rest_framework import generics, permissions, serializers
+from rest_framework import generics, permissions
 
 # Create your views here.
 from .serializers import ArticleSerializer
