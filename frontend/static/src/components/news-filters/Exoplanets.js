@@ -1,4 +1,6 @@
 import {Component} from 'react';
+import Article from './Article';
+import Ad from '../Ad';
 
 class Exoplanets extends Component {
     constructor(props) {
@@ -15,12 +17,17 @@ class Exoplanets extends Component {
     }
 
     render() {
-        const exo_articles = this.state.articles?.map(article => <section key={article.id}>
-            <h2>{article.title}</h2>
-            <p>{article.body}</p>
-            <p>{article.author}</p>
-            <p>{article.article_type}</p>
-        </section>)
+        const exo_articles = this.state.articles?.map(article =>
+            article.article_status === 'published'
+            ?
+                (
+                    <div className="container">
+                        <Ad/>
+                        <Article key={article.id} article={article}/>
+                        <Ad/>
+                    </div>
+                ) : null
+        )
         return <>{exo_articles}</>;
     }
 }
