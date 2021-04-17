@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import Cookies from 'js-cookie';
 
-class Profile extends Component {
+class Compose extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,7 +26,7 @@ class Profile extends Component {
     async componentDidMount() {
         const articles = await fetch('/api/v1/articles/');
         const data = await articles.json().catch(error => console.log(error));
-        const user = await fetch('/rest-auth/user');
+        const user = await fetch('/rest-auth/user/');
         const userData = await user.json();
         const articles_by_user = data.filter(x => x.author === userData.username);
         if (data !== undefined) {
@@ -208,4 +208,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default Compose;
