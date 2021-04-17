@@ -56,9 +56,13 @@ a {
     text-decoration: none;
     font-size: 20px;
 }
-
+nav{
+    padding: 20px;
+    background-color: #612121;
+}
 nav a {
     padding: 22px;
+    border-left: 4px solid #242424;
 }
 .brand {
     font-size: 30px;
