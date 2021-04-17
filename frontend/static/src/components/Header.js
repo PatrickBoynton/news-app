@@ -13,7 +13,7 @@ class Header extends Component {
             <Link to="/cosmology">Cosmology</Link>
             <Link to="/exoplanets">Exoplanets</Link>
             <Link to="/editorial">Editorial</Link>
-            <Link to="/profile">Profile</Link>
+            <Link to="/submit">Write an Article</Link>
             <Link to="/" />
           </nav>
         </header>
