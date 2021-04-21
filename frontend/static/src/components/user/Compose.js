@@ -185,6 +185,10 @@ class Compose extends Component {
                                 value="editorial">Editorial
                         </option>
                     </select>
+                    <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>
+                    {
+                        this.state.profile_picture && <img src={this.state.preview} alt="preview"/>
+                    }
                     {
                         !this.state.isEditMode
                             ?
@@ -194,12 +198,12 @@ class Compose extends Component {
                     }
                 </form>
                 {/*The image uploader.*/}
-                <form action="/profile" onSubmit={this.handleSubmit}>
-                    <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>
-                    {
-                        this.state.profile_picture && <img src={this.state.preview} alt="preview"/>
-                    }
-                </form>
+                {/*<form action="/profile" onSubmit={this.handleSubmit}>*/}
+                {/*    <input className="file" type="file" name="profile_picture" onChange={this.handleImage}/>*/}
+                {/*    {*/}
+                {/*        this.state.profile_picture && <img src={this.state.preview} alt="preview"/>*/}
+                {/*    }*/}
+                {/*</form>*/}
                 <button onClick={() => this.handleLogout()} className="form-btn">Logout</button>
             </>;
         } else {
