@@ -3,7 +3,7 @@ import {Component} from 'react';
 import Header from './components/Header';
 import Register from './components/user/Register';
 import Login from './components/user/Login';
-import Profile from './components/user/Profile';
+import Compose from './components/user/Compose';
 import Astronomy from './components/news-filters/Astronomy';
 import Cookies from 'js-cookie';
 import {Switch, Route} from 'react-router-dom';
@@ -40,7 +40,7 @@ class App extends Component {
             <div className="App">
                 <Header isLoggedIn={this.state.isLoggedIn}/>
                 <Switch>
-                    <Route path="/profile" render={(props) => <Profile {...props} isLoggedIn={this.state.isLoggedIn}/>}/>
+                    <Route path="/submit" render={(props) => <Compose {...props} isLoggedIn={this.state.isLoggedIn}/>}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/login" render={(props) => <Login {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin}/>}/>
                     <Route path="/astronomy" component={Astronomy}/>
