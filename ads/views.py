@@ -6,11 +6,13 @@ from .serializers import AdSerializer
 
 # Create your views here.
 class AdListView(generics.ListAPIView):
+    permission_classes = (permissions.AllowAny, )
     serializer_class = AdSerializer
     queryset = Ad.objects.all()
 
 
 class AdRandomView(generics.ListAPIView):
+    permission_classes = (permissions.AllowAny, )
     serializer_class = AdSerializer
 
     def get_queryset(self):
