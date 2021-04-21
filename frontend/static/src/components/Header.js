@@ -14,7 +14,7 @@ class Header extends Component {
             <Link to="/exoplanets">Exoplanets</Link>
             <Link to="/editorial">Editorial</Link>
             <Link to="/submit">Write an Article</Link>
-            <Link to="/" />
+            <Link to='/logout'>Logout </Link>
           </nav>
         </header>
       );
