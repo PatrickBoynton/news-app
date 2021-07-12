@@ -8,7 +8,7 @@ from .serializers import ArticleSerializer
 class ArticlesListView(generics.ListCreateAPIView):
     queryset = models.Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class ArticleDetailView(generics.RetrieveAPIView):
