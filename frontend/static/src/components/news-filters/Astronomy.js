@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import Article from './Article';
+import Article from './articles/Article';
 import Ad from '../Ad';
 
 class Astronomy extends Component {
