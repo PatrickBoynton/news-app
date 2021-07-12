@@ -1,6 +1,7 @@
 import {Component} from 'react';
-import Article from './Article';
-import Ad from '../Ad';
+import Article from '../articles/Article';
+import Ad from '../../Ad';
+import './FullList.css';
 
 class FullList extends Component {
     constructor(props) {
@@ -23,10 +24,8 @@ class FullList extends Component {
                 <Article key={article.id} article={article}/>
             ) : null
         );
-        return <div className="container">
-            <Ad/>
-            <div className="item">{articles}</div>
-            <Ad/>
+        return <div>
+            <div className="container">{articles}</div>
         </div>;
     }
 }
