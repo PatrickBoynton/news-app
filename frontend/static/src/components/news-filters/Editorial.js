@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import Article from './Article';
+import Article from './articles/Article';
 import Ad from '../Ad';
 
 class Editorial extends Component {
@@ -20,7 +20,7 @@ class Editorial extends Component {
     render() {
         const editorial_articles = this.state.articles?.map(article =>
             article.article_status === 'published'
-            ?
+                ?
                 (
                     <div className="container">
                         <Ad/>

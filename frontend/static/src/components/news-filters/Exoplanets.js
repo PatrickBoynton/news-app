@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import Article from './Article';
+import Article from './articles/Article';
 import Ad from '../Ad';
 
 class Exoplanets extends Component {
@@ -19,7 +19,7 @@ class Exoplanets extends Component {
     render() {
         const exo_articles = this.state.articles?.map(article =>
             article.article_status === 'published'
-            ?
+                ?
                 (
                     <div className="container">
                         <Ad/>
@@ -27,7 +27,7 @@ class Exoplanets extends Component {
                         <Ad/>
                     </div>
                 ) : null
-        )
+        );
         return <>{exo_articles}</>;
     }
 }
