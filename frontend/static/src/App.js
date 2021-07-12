@@ -1,13 +1,13 @@
 import './App.css';
 import {Component} from 'react';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import Register from './components/user/Register';
 import Login from './components/user/Login';
 import Compose from './components/user/Compose';
 import Astronomy from './components/news-filters/Astronomy';
 import Cookies from 'js-cookie';
 import {Switch, Route} from 'react-router-dom';
-import FullList from './components/news-filters/FullList';
+import FullList from './components/news-filters/full-list/FullList';
 import Cosmology from './components/news-filters/Cosmology';
 import Exoplanets from './components/news-filters/Exoplanets';
 import Editorial from './components/news-filters/Editorial';
