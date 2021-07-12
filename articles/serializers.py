@@ -12,4 +12,4 @@ class ArticleSerializer(serializers.ModelSerializer):
                   'body',
                   'author',
                   'article_status',
-                  'article_type', 'image', 'article_created_at')
+                  'article_type', 'image', 'article_created_at',)
