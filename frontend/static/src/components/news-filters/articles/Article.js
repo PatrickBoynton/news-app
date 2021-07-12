@@ -4,7 +4,7 @@ import './Articles.css';
 class Article extends Component {
     render() {
         return (
-            <article style={{border: '2px solid red'}} className={`article-${this.props.article.id}`}>
+            <article key={this.props.article.id} style={{border: '2px solid red'}} className={`article-${this.props.article.id}`}>
                 {
                     // Ignore the warnings.
                     <>
