@@ -4,11 +4,11 @@ import Header from './components/header/Header';
 import Register from './components/user/register/Register';
 import Login from './components/user/login/Login';
 import Compose from './components/user/Compose';
-import Astronomy from './components/news-filters/Astronomy';
+import Astronomy from './components/news-filters/astronomy/Astronomy';
 import Cookies from 'js-cookie';
 import {Switch, Route} from 'react-router-dom';
 import FullList from './components/news-filters/full-list/FullList';
-import Cosmology from './components/news-filters/Cosmology';
+import Cosmology from './components/news-filters/cosmology/Cosmology';
 import Exoplanets from './components/news-filters/Exoplanets';
 import Editorial from './components/news-filters/Editorial';
 
