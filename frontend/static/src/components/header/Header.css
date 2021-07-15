@@ -1,12 +1,8 @@
-nav{
+nav {
     font-size: 1.6rem;
-    border: 2px solid #cd0505;
     padding: 1rem;
-}
-ul{
     display: flex;
     justify-content: space-between;
-}
-li{
-    padding: 1rem;
+    margin-bottom: 1rem;
+    color: #cd0505;
 }
