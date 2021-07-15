@@ -1,6 +1,7 @@
 import {Component} from 'react';
-import Article from './articles/Article';
-import Ad from '../Ad';
+import Article from '../articles/Article';
+import Ad from '../../ads/Ad';
+import './Cosmology.css';
 
 class Cosmology extends Component {
     constructor(props) {

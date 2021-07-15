@@ -1,6 +1,6 @@
 import {Component} from 'react';
-import Article from './articles/Article';
-import Ad from '../Ad';
+import Article from '../articles/Article';
+import Ad from '../../ads/Ad';
 
 class Astronomy extends Component {
     constructor(props) {
@@ -24,12 +24,9 @@ class Astronomy extends Component {
                 ) : null
         );
         return <div className="container">
-            <Ad/>
-            <div className="item">
-                {astro_articles}
-            </div>
-            <Ad/>
-        </div>;
+                <Ad/>
+                 {astro_articles}
+              </div>;
     }
 }
 

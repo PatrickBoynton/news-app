@@ -1,4 +1,5 @@
 import {Component} from 'react';
+import './Ad.css';
 
 class Ad extends Component {
     constructor(props) {
