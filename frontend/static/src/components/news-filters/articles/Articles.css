@@ -1,0 +1,12 @@
+article{
+    padding: 1rem;
+    align-self: start;
+    font-size: 1.6rem;
+}
+article:nth-child(3) {
+    grid-column: span 2;
+    align-self: flex-start;
+}
+img {
+    height: 50%;
+}

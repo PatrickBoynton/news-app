@@ -2,19 +2,21 @@ import {Component} from 'react';
 import Cookies from 'js-cookie';
 import {NavLink} from 'react-router-dom';
 
-class Login extends Component {
+class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
             email: '',
-            password: ''
+            password1: '',
+            password2: ''
         };
-        this.handleLogin = this.handleLogin.bind(this);
+
+        this.handleRegister = this.handleRegister.bind(this);
         this.handleInput = this.handleInput.bind(this);
     }
 
-    async handleLogin(e, object) {
+    async handleRegister(e, object) {
         e.preventDefault();
         const options = {
             method: 'POST',
@@ -22,20 +24,13 @@ class Login extends Component {
                 'Content-Type': 'Application/Json',
                 'X-CSRFToken': Cookies.get('csrftoken')
             },
-            body: JSON.stringify({
-                username: object.username,
-                email: object.email,
-                password: object.password
-            }),
+            body: JSON.stringify(object)
         };
-        const response = await fetch('/rest-auth/login/', options);
-        const data = await response.json().catch(error => console.log(error));
 
+        const response = await fetch('/rest-auth/registration/', options);
+        const data = await response.json().catch(error => console.log(error));
         if (data.key) {
             Cookies.set('Authorization', `Token ${data.key}`);
-            this.props.handleLogin();
-        } else {
-            console.log(data);
         }
     }
 
@@ -45,14 +40,14 @@ class Login extends Component {
 
     render() {
         return <>
-            <form className='login' method="/profile" onSubmit={(e) => this.handleLogin(e, this.state)}>
-                    <img className="sombrero" src={process.env.PUBLIC_URL + '/Sombrero.jpeg'}  alt=""/>
-                <h2>Login</h2>
+            <form onSubmit={(e) => this.handleRegister(e, this.state)}>
+                <p style={{textAlign: 'left', padding: '1rem'}}>Have a news story you want to share? Create an account and start submitting your stories today!</p>
+                <h2>Register</h2>
                 <label htmlFor="username">Username</label>
                 <input type="text"
+                       name="username"
                        onChange={this.handleInput}
                        value={this.state.username}
-                       name="username"
                        id="username"/>
                 <label htmlFor="email">Email</label>
                 <input type="email"
@@ -60,20 +55,23 @@ class Login extends Component {
                        value={this.state.email}
                        name="email"
                        id="email"/>
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password1">Password</label>
                 <input type="password"
                        onChange={this.handleInput}
-                       value={this.state.password}
-                       name="password"
-                       id="password"/>
-                <button className="form-btn" type="submit">Login</button>
-                <p>Don't have an account? Why not <NavLink to="/register" className="link">Register</NavLink> an
-                account first.
-            </p>
+                       value={this.state.password1}
+                       name="password1"
+                       id="password1"/>
+                <label htmlFor="password2">Confirm Password</label>
+                <input type="password"
+                       onChange={this.handleInput}
+                       value={this.state.password2}
+                       name="password2"
+                       id="password2"/>
+                <button className="form-btn" type="submit">Register</button>
+                <p>Already have an account? Please <NavLink to="/login" className="link">Login</NavLink></p>
             </form>
         </>;
     }
 }
 
-export default Login;
-
+export default Register;
