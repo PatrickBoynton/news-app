@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import Article from './articles/Article';
-import Ad from '../Ad';
+import Ad from '../ads/Ad';
 
 class Exoplanets extends Component {
     constructor(props) {
