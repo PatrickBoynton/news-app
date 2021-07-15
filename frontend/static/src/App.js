@@ -1,8 +1,8 @@
 import './App.css';
 import {Component} from 'react';
 import Header from './components/header/Header';
-import Register from './components/user/Register';
-import Login from './components/user/Login';
+import Register from './components/user/register/Register';
+import Login from './components/user/login/Login';
 import Compose from './components/user/Compose';
 import Astronomy from './components/news-filters/Astronomy';
 import Cookies from 'js-cookie';
