@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import Article from '../articles/Article';
-import Ad from '../../Ad';
+import Ad from '../../ads/Ad';
 import './FullList.css';
 
 class FullList extends Component {
@@ -25,7 +25,7 @@ class FullList extends Component {
             ) : null
         );
         return <div>
-            <div className="container">{articles}</div>
+            <div className="container"> {articles} <Ad/> </div>
         </div>;
     }
 }
