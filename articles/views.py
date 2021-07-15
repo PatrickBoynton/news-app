@@ -5,10 +5,10 @@ from rest_framework import generics, permissions
 from .serializers import ArticleSerializer
 
 
-class ArticlesListView(generics.ListCreateAPIView):
+class ArticlesListView(generics.ListAPIView):
     queryset = models.Article.objects.all()
     serializer_class = ArticleSerializer
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class ArticleDetailView(generics.RetrieveAPIView):
