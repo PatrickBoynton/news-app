@@ -22,14 +22,12 @@ class Cosmology extends Component {
             article.article_status === 'published'
                 ?
                 (
-                    <div className="container">
-                        <Ad/>
+                        <>
                         <Article key={article.id} article={article}/>
-                        <Ad/>
-                    </div>
+                        </>
                 ) : null
         );
-        return <>{cosmo_articles}</>;
+        return <div className="container"> <Ad/> {cosmo_articles}</div>;
     }
 }
 

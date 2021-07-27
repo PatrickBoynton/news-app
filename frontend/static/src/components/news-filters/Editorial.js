@@ -22,14 +22,12 @@ class Editorial extends Component {
             article.article_status === 'published'
                 ?
                 (
-                    <div className="container">
-                        <Ad/>
+                    <>
                         <Article key={article.id} article={article}/>
-                        <Ad/>
-                    </div>
+                    </>
                 ) : null
         );
-        return <>{editorial_articles}</>;
+        return <div className="container">{editorial_articles} <Ad/></div>;
     }
 }
 
