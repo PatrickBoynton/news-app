@@ -25,7 +25,7 @@ class FullList extends Component {
             ) : null
         );
         return <div>
-            <div className="container"> {articles} <Ad/> </div>
+            <div className="container"> {articles} <Ad key={12} /> </div>
         </div>;
     }
 }
