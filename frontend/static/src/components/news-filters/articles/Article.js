@@ -12,7 +12,9 @@ class Article extends Component {
                             <img src={this.props.article.image} alt="Nothin' here mate."/>
                         ) : null}
                         <h1>
-                            <a href="/">{this.props.article.title}</a>
+                            <a href="/">
+                                {this.props.article.title}
+                            </a>
                         </h1>
                         <p>{this.props.article.author}</p>
                         <p>{this.props.article.article_type}</p>
