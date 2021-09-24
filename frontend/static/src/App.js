@@ -1,5 +1,5 @@
 import './App.css';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import Header from './components/header/Header';
 import Register from './components/user/register/Register';
 import Login from './components/user/login/Login';
@@ -40,9 +40,11 @@ class App extends Component {
             <div className="App">
                 <Header isLoggedIn={this.state.isLoggedIn}/>
                 <Switch>
-                    <Route path="/submit" render={(props) => <Compose {...props} isLoggedIn={this.state.isLoggedIn}/>}/>
+                    <Route path="/submit" render={(props) =>
+                        <Compose {...props} isLoggedIn={this.state.isLoggedIn}/>}/>
                     <Route path="/register" component={Register}/>
-                    <Route path="/login" render={(props) => <Login {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin}/>}/>
+                    <Route path="/login" render={(props) =>
+                        <Login {...props} isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin}/>}/>
                     <Route path="/astronomy" component={Astronomy}/>
                     <Route path="/cosmology" component={Cosmology}/>
                     <Route path="/exoplanets" component={Exoplanets}/>
