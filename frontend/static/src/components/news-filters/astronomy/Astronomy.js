@@ -1,6 +1,5 @@
 import {Component} from 'react';
 import Article from '../articles/Article';
-import Ad from '../../ads/Ad';
 
 class Astronomy extends Component {
     constructor(props) {
@@ -23,8 +22,8 @@ class Astronomy extends Component {
                     <Article key={article.id} article={article}/>
                 ) : null
         );
+
         return <div className="container">
-                <Ad/>
                  {astro_articles}
               </div>;
     }
