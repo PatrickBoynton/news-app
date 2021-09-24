@@ -8,7 +8,7 @@ from .serializers import ArticleSerializer
 class ArticlesListView(generics.ListAPIView):
     queryset = models.Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.AllowAny,)
 
 
 class ArticleDetailView(generics.RetrieveAPIView):
@@ -40,6 +40,7 @@ class ArticleEditView(generics.RetrieveUpdateAPIView):
 
 class ArticleFilterView(generics.ListAPIView):
     serializer_class = ArticleSerializer
+    permission_classes = (permissions.AllowAny, )
 
     def get_queryset(self):
         article_type = self.kwargs["article_type"]
